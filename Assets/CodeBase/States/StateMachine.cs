@@ -19,7 +19,8 @@ namespace CodeBase.States
         {
             _states = new Dictionary<Type, IExitableState>
             {
-                { typeof(LoadMenuState), _stateFactory.CreateState<LoadMenuState>() }
+                { typeof(LoadMenuState), _stateFactory.CreateState<LoadMenuState>() },
+                { typeof(MainMenuState), _stateFactory.CreateState<MainMenuState>() }
             };
         }
 

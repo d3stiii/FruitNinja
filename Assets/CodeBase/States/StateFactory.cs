@@ -4,7 +4,7 @@ namespace CodeBase.States
 {
     public interface IStateFactory
     {
-        IExitableState CreateState<T>() where T : IExitableState;
+        IExitableState CreateState<TState>() where TState : IExitableState;
     }
 
     public class StateFactory : IStateFactory
@@ -14,7 +14,7 @@ namespace CodeBase.States
         public StateFactory(IInstantiator instantiator) =>
             _instantiator = instantiator;
 
-        public IExitableState CreateState<T>() where T : IExitableState =>
-            _instantiator.Instantiate<T>();
+        public IExitableState CreateState<TState>() where TState : IExitableState =>
+            _instantiator.Instantiate<TState>();
     }
 }

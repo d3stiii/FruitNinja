@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 8852923869396322822}
   - component: {fileID: 8992420802101253161}
   m_Layer: 5
-  m_Name: BladeSkinsButton
+  m_Name: BladeShopButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -983,6 +983,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 384206755711329679}
+  - component: {fileID: -4654623333565182344}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -1014,3 +1015,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &-4654623333565182344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9186628533399589663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e8b7501aae942d1a450b269c9f099ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playButton: {fileID: 5705076766450176077}
+  _exitButton: {fileID: 3623821256633620008}
+  _bladeShopButton: {fileID: 8992420802101253161}
