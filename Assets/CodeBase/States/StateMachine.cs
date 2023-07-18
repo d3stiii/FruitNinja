@@ -1,27 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using Zenject;
-
-namespace CodeBase.States
+﻿namespace CodeBase.States
 {
-    public class StateMachine : IInitializable
+    public class StateMachine
     {
         private readonly IStateFactory _stateFactory;
-        private Dictionary<Type, IExitableState> _states;
         private IExitableState _currentState;
 
         public StateMachine(IStateFactory stateFactory)
         {
             _stateFactory = stateFactory;
-        }
-
-        public void Initialize()
-        {
-            _states = new Dictionary<Type, IExitableState>
-            {
-                { typeof(LoadMenuState), _stateFactory.CreateState<LoadMenuState>() },
-                { typeof(MainMenuState), _stateFactory.CreateState<MainMenuState>() }
-            };
         }
 
         public void EnterState<TState>() where TState : class, IState
@@ -47,6 +33,6 @@ namespace CodeBase.States
         }
 
         private TState GetState<TState>() where TState : class, IExitableState =>
-            _states[typeof(TState)] as TState;
+            _stateFactory.CreateState<TState>() as TState;
     }
 }

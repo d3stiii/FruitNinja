@@ -1,5 +1,4 @@
 ﻿using CodeBase.Services;
-using CodeBase.Services.UI;
 
 namespace CodeBase.States
 {
@@ -8,13 +7,11 @@ namespace CodeBase.States
         private const string MenuSceneName = "Menu";
         private readonly StateMachine _stateMachine;
         private readonly ISceneLoader _sceneLoader;
-        private readonly IScreenFactory _screenFactory;
 
-        public LoadMenuState(StateMachine stateMachine, ISceneLoader sceneLoader, IScreenFactory screenFactory)
+        public LoadMenuState(StateMachine stateMachine, ISceneLoader sceneLoader)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
-            _screenFactory = screenFactory;
         }
 
         public void Enter()
@@ -24,10 +21,7 @@ namespace CodeBase.States
 
         public void Exit() { }
 
-        private void OnLoaded()
-        {
-            _screenFactory.CreateUIRoot();
-            _stateMachine.EnterState<MainMenuState>();
-        }
+        private void OnLoaded() =>
+            _stateMachine.EnterState<ConstructMenuState>();
     }
 }
