@@ -14,7 +14,7 @@ namespace CodeBase.States
         {
             _stateFactory = stateFactory;
         }
-        
+
         public void Initialize()
         {
             _states = new Dictionary<Type, IExitableState>
@@ -23,10 +23,16 @@ namespace CodeBase.States
             };
         }
 
-        public void EnterState<T>() where T : class, IState
+        public void EnterState<TState>() where TState : class, IState
         {
-            IState newState = ChangeState<T>();
+            IState newState = ChangeState<TState>();
             newState.Enter();
+        }
+
+        public void EnterState<TState, TPayload>(TPayload payload) where TState : class, IPayloadedState<TPayload>
+        {
+            IPayloadedState<TPayload> newState = ChangeState<TState>();
+            newState.Enter(payload);
         }
 
         private TState ChangeState<TState>() where TState : class, IExitableState
