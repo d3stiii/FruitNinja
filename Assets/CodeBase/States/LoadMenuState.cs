@@ -5,6 +5,7 @@ namespace CodeBase.States
 {
     public class LoadMenuState : IState
     {
+        private const string MenuSceneName = "Menu";
         private readonly StateMachine _stateMachine;
         private readonly ISceneLoader _sceneLoader;
 
@@ -16,7 +17,7 @@ namespace CodeBase.States
 
         public void Enter()
         {
-            _sceneLoader.LoadScene("Menu", () => Debug.Log("Loaded Menu scene"));
+            _sceneLoader.LoadScene(MenuSceneName, () => Debug.Log("Loaded Menu scene"));
         }
 
         public void Exit() { }
