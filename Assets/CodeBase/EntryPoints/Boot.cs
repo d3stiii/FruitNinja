@@ -1,4 +1,4 @@
-using CodeBase.Services;
+using CodeBase.States;
 using UnityEngine;
 using Zenject;
 
@@ -6,17 +6,17 @@ namespace CodeBase.EntryPoints
 {
     public class Boot : MonoBehaviour
     {
-        private ISceneLoader _sceneLoader;
+        private StateMachine _stateMachine;
 
-        private void Awake()
+        public void Start()
         {
-            _sceneLoader.LoadScene("Main");
+            _stateMachine.EnterState<LoadMenuState>();
         }
 
         [Inject]
-        public void Construct(ISceneLoader sceneLoader)
+        public void Construct(StateMachine stateMachine)
         {
-            _sceneLoader = sceneLoader;
+            _stateMachine = stateMachine;
         }
     }
 }

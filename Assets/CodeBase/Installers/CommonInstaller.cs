@@ -3,14 +3,16 @@ using Zenject;
 
 namespace CodeBase.Installers
 {
-    public class BootstrapInstaller : MonoInstaller
+    public class CommonInstaller : MonoInstaller
     {
         public override void InstallBindings()
         {
-            Container
-                .Bind<ISceneLoader>()
-                .To<SceneLoader>()
-                .AsSingle();
+            BindSceneLoader();
         }
+
+        private void BindSceneLoader() =>
+            Container
+                .BindInterfacesTo<SceneLoader>()
+                .AsSingle();
     }
 }
