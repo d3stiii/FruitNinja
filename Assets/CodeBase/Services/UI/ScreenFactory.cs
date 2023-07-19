@@ -1,20 +1,21 @@
-﻿using CodeBase.UI;
-using UnityEngine;
+﻿using System;
+using CodeBase.UI;
 using Zenject;
+using Object = UnityEngine.Object;
 
 namespace CodeBase.Services.UI
 {
     public interface IScreenFactory
     {
         TScreen CreateScreen<TScreen>() where TScreen : BaseScreen;
-        GameObject CreateUIRoot();
+        UIRoot GetOrCreateUIRoot();
     }
 
     public class ScreenFactory : IScreenFactory
     {
         private readonly IInstantiator _instantiator;
         private readonly IScreenProvider _screenProvider;
-        private Transform _uiRoot;
+        private UIRoot _uiRoot;
 
         public ScreenFactory(IInstantiator instantiator, IScreenProvider screenProvider)
         {
@@ -22,20 +23,24 @@ namespace CodeBase.Services.UI
             _screenProvider = screenProvider;
         }
 
-        public GameObject CreateUIRoot()
-        {
-            if (_uiRoot != null)
-                return _uiRoot.gameObject;
-
-            var uiRootPrefab = _screenProvider.GetUIRoot();
-            _uiRoot = Object.Instantiate(uiRootPrefab).transform;
-            return _uiRoot.gameObject;
-        }
-
         public TScreen CreateScreen<TScreen>() where TScreen : BaseScreen
         {
-            var screenPrefab = _screenProvider.GetScreen<TScreen>();
-            return _instantiator.InstantiatePrefabForComponent<TScreen>(screenPrefab, _uiRoot);
+            if (_uiRoot == null)
+            {
+                throw new NullReferenceException(
+                    $"UI root shouldn't be null. Call {nameof(GetOrCreateUIRoot)} method to create UI root.");
+            }
+
+            var screenPrefab = _screenProvider.GetScreenPrefab<TScreen>();
+            return _instantiator.InstantiatePrefabForComponent<TScreen>(screenPrefab, _uiRoot.transform);
+        }
+
+        public UIRoot GetOrCreateUIRoot()
+        {
+            if (_uiRoot == null)
+                _uiRoot = Object.Instantiate(_screenProvider.GetUIRootPrefab());
+
+            return _uiRoot;
         }
     }
 }

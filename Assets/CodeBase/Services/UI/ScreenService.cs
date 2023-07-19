@@ -31,6 +31,6 @@ namespace CodeBase.Services.UI
         }
 
         public void HideCurrentScreen() =>
-            Object.Destroy(_currentScreen);
+            Object.Destroy(_currentScreen.gameObject);
     }
 }

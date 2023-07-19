@@ -4,18 +4,18 @@ namespace CodeBase.States
 {
     public class ConstructMenuState : IState
     {
-        private readonly StateMachine _stateMachine;
         private readonly IScreenFactory _screenFactory;
+        private readonly StateMachine _stateMachine;
 
         public ConstructMenuState(StateMachine stateMachine, IScreenFactory screenFactory)
         {
-            _stateMachine = stateMachine;
             _screenFactory = screenFactory;
+            _stateMachine = stateMachine;
         }
 
         public void Enter()
         {
-            _screenFactory.CreateUIRoot();
+            var uiRoot = _screenFactory.GetOrCreateUIRoot();
             _stateMachine.EnterState<MainMenuState>();
         }
 

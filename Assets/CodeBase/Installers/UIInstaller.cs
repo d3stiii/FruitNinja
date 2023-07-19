@@ -8,7 +8,7 @@ namespace CodeBase.Installers
 {
     public class UIInstaller : MonoInstaller
     {
-        [SerializeField] private GameObject _uiRoot;
+        [SerializeField] private UIRoot _uiRoot;
         [SerializeField] private List<BaseScreen> _screens;
 
         public override void InstallBindings()

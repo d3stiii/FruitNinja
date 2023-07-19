@@ -7,7 +7,7 @@ namespace CodeBase.States
         private readonly IScreenFactory _screenFactory;
         private readonly StateMachine _stateMachine;
 
-        public ConstructGameState(IScreenFactory screenFactory, StateMachine stateMachine)
+        public ConstructGameState(StateMachine stateMachine, IScreenFactory screenFactory)
         {
             _screenFactory = screenFactory;
             _stateMachine = stateMachine;
@@ -15,7 +15,7 @@ namespace CodeBase.States
 
         public void Enter()
         {
-            _screenFactory.CreateUIRoot();
+            var uiRoot = _screenFactory.GetOrCreateUIRoot();
             _stateMachine.EnterState<GameplayState>();
         }
 

@@ -1,7 +1,11 @@
-﻿namespace CodeBase.States
+﻿using System;
+using System.Collections.Generic;
+
+namespace CodeBase.States
 {
     public class StateMachine
     {
+        private readonly Dictionary<Type, IExitableState> _cachedStates = new();
         private readonly IStateFactory _stateFactory;
         private IExitableState _currentState;
 
@@ -32,7 +36,14 @@
             return state;
         }
 
-        private TState GetState<TState>() where TState : class, IExitableState =>
-            _stateFactory.CreateState<TState>() as TState;
+        private TState GetState<TState>() where TState : class, IExitableState
+        {
+            if (_cachedStates.TryGetValue(typeof(TState), out var state))
+                return state as TState;
+
+            state = _stateFactory.CreateState<TState>();
+            _cachedStates.Add(typeof(TState), state);
+            return state as TState;
+        }
     }
 }
