@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6722656099298539365}
   - component: {fileID: -5802290751729764951}
   m_Layer: 5
-  m_Name: Hud
+  m_Name: UIRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
