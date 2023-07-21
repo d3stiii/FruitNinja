@@ -14,15 +14,11 @@ namespace CodeBase.Services.AssetManagement
         private readonly IAssetLoader _assetLoader;
         private FruitSpawnerSettings _fruitSpawnerSettings;
 
-        public StaticDataProvider(IAssetLoader assetLoader)
-        {
+        public StaticDataProvider(IAssetLoader assetLoader) =>
             _assetLoader = assetLoader;
-        }
 
-        public void Initialize()
-        {
+        public void Initialize() =>
             _fruitSpawnerSettings = _assetLoader.LoadAsset<FruitSpawnerSettings>(FruitSpawnerSettingsPath);
-        }
 
         public FruitSpawnerSettings GetFruitSpawnerSettings() =>
             _fruitSpawnerSettings;

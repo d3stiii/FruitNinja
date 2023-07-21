@@ -14,12 +14,13 @@ namespace CodeBase.Installers
 
         private void BindStateMachine() =>
             Container
-                .BindInterfacesAndSelfTo<StateMachine>()
+                .Bind<StateMachine>()
                 .AsSingle();
 
         private void BindStateFactory() =>
             Container
-                .BindInterfacesTo<StateFactory>()
+                .Bind<IStateFactory>()
+                .To<StateFactory>()
                 .AsSingle();
     }
 }

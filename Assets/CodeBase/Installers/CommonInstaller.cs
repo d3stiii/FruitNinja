@@ -26,21 +26,19 @@ namespace CodeBase.Installers
 
         private void BindSceneLoader() =>
             Container
-                .BindInterfacesTo<SceneLoader>()
+                .Bind<ISceneLoader>()
+                .To<SceneLoader>()
                 .AsSingle();
 
-        private void BindAssetLoader()
-        {
+        private void BindAssetLoader() =>
             Container
-                .BindInterfacesTo<AssetLoader>()
+                .Bind<IAssetLoader>()
+                .To<AssetLoader>()
                 .AsSingle();
-        }
 
-        private void BindStaticDataProvider()
-        {
+        private void BindStaticDataProvider() =>
             Container
                 .BindInterfacesTo<StaticDataProvider>()
                 .AsSingle();
-        }
     }
 }

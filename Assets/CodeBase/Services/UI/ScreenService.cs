@@ -14,16 +14,14 @@ namespace CodeBase.Services.UI
         private readonly IScreenFactory _screenFactory;
         private BaseScreen _currentScreen;
 
-        public ScreenService(IScreenFactory screenFactory)
-        {
+        public ScreenService(IScreenFactory screenFactory) =>
             _screenFactory = screenFactory;
-        }
 
         public TScreen Show<TScreen>() where TScreen : BaseScreen
         {
             if (_currentScreen != null)
                 HideCurrentScreen();
-            
+
             var newScreen = _screenFactory.CreateScreen<TScreen>();
             _currentScreen = newScreen;
 

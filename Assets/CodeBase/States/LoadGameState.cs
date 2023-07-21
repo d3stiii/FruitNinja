@@ -14,15 +14,11 @@ namespace CodeBase.States
             _sceneLoader = sceneLoader;
         }
 
-        public void Enter()
-        {
+        public void Enter() => 
             _sceneLoader.LoadScene(CoreGameplaySceneName, OnLoaded);
-        }
 
-        private void OnLoaded()
-        {
+        private void OnLoaded() => 
             _stateMachine.EnterState<ConstructGameState>();
-        }
 
         public void Exit() { }
     }

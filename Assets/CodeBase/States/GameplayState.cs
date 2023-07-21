@@ -6,19 +6,13 @@ namespace CodeBase.States
     {
         private readonly IFruitSpawner _fruitSpawner;
 
-        public GameplayState(IFruitSpawner fruitSpawner)
-        {
+        public GameplayState(IFruitSpawner fruitSpawner) => 
             _fruitSpawner = fruitSpawner;
-        }
 
-        public void Enter()
-        {
+        public void Enter() => 
             _fruitSpawner.StartSpawning();
-        }
 
-        public void Exit()
-        {
+        public void Exit() => 
             _fruitSpawner.StopSpawning();
-        }
     }
 }

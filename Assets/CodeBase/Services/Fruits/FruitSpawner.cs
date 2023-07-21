@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using CodeBase.Extensions;
 using CodeBase.Fruits;
 using CodeBase.Services.AssetManagement;

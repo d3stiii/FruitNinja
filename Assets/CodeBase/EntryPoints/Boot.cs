@@ -8,15 +8,11 @@ namespace CodeBase.EntryPoints
     {
         private StateMachine _stateMachine;
 
-        public void Start()
-        {
+        public void Start() => 
             _stateMachine.EnterState<LoadMenuState>();
-        }
 
         [Inject]
-        public void Construct(StateMachine stateMachine)
-        {
+        public void Construct(StateMachine stateMachine) => 
             _stateMachine = stateMachine;
-        }
     }
 }

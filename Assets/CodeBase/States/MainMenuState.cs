@@ -14,10 +14,8 @@ namespace CodeBase.States
             _screenService = screenService;
         }
 
-        public void Enter()
-        {
+        public void Enter() => 
             _screenService.Show<MainMenuScreen>();
-        }
 
         public void Exit() { }
     }

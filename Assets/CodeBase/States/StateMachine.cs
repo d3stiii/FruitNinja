@@ -10,10 +10,8 @@ namespace CodeBase.States
         private readonly IStateFactory _stateFactory;
         private IExitableState _currentState;
 
-        public StateMachine(IStateFactory stateFactory)
-        {
+        public StateMachine(IStateFactory stateFactory) => 
             _stateFactory = stateFactory;
-        }
 
         public void EnterState<TState>() where TState : class, IState
         {

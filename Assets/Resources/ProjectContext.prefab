@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fruits:
-  - {fileID: -2775245306358777718, guid: b6338f3afe1e9ce4dbe608722817b38e, type: 3}
-  - {fileID: 718291394226041814, guid: 9b9db06445e79394e974fb31a5b41bb0, type: 3}
-  - {fileID: 118489213413220175, guid: 3411cbc69d5a265408d8b7621681d99e, type: 3}
+  - {fileID: 1194563351253064785, guid: b6338f3afe1e9ce4dbe608722817b38e, type: 3}
+  - {fileID: 4991920078558691450, guid: 9b9db06445e79394e974fb31a5b41bb0, type: 3}
+  - {fileID: 2332977492340128094, guid: 3411cbc69d5a265408d8b7621681d99e, type: 3}
   _spawnerRoot: {fileID: 5816455406160899420, guid: 3395631264611b244902a638373a3f57, type: 3}

@@ -14,10 +14,8 @@ namespace CodeBase.Services
     {
         private readonly ICoroutineRunner _coroutineRunner;
 
-        public SceneLoader(ICoroutineRunner coroutineRunner)
-        {
+        public SceneLoader(ICoroutineRunner coroutineRunner) => 
             _coroutineRunner = coroutineRunner;
-        }
 
         public void LoadScene(string name, Action onLoaded = null) =>
             _coroutineRunner.StartCoroutine(Load(name, onLoaded));
