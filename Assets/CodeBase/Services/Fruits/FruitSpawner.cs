@@ -22,7 +22,6 @@ namespace CodeBase.Services.Fruits
         private readonly ICoroutineRunner _coroutineRunner;
         private readonly IFruitFactory _fruitFactory;
         private readonly IStaticDataProvider _staticDataProvider;
-        private readonly Array _fruitTypeIds = Enum.GetValues(typeof(FruitType));
         private FruitSpawnerSettings _settings;
 
         public FruitSpawner(ICoroutineRunner coroutineRunner, IFruitFactory fruitFactory,
@@ -36,20 +35,16 @@ namespace CodeBase.Services.Fruits
         public void Initialize() =>
             _settings = _staticDataProvider.GetFruitSpawnerSettings();
 
-        public void StartSpawning()
+        public void StartSpawning() =>
+            _coroutineRunner.StartCoroutine(Spawn());
+
+        public void StopSpawning() =>
+            _coroutineRunner.StopCoroutine(Spawn());
+
+        private IEnumerator Spawn()
         {
             var spawnerRoot = _fruitFactory.GetOrCreateSpawnerRoot();
-            _coroutineRunner.StartCoroutine(Spawn(spawnerRoot.GetComponent<Collider>()));
-        }
-
-        public void StopSpawning()
-        {
-            var spawnerRoot = _fruitFactory.GetOrCreateSpawnerRoot();
-            _coroutineRunner.StopCoroutine(Spawn(spawnerRoot.GetComponent<Collider>()));
-        }
-
-        private IEnumerator Spawn(Collider spawnArea)
-        {
+            var spawnArea = spawnerRoot.GetComponent<Collider>();
             while (true)
             {
                 yield return new WaitForSeconds(Random.Range(_settings.MinSpawnDelay, _settings.MaxSpawnDelay));

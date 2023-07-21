@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e514a44dadff4533ac5b1dd35d13dd00, type: 3}
   m_Name: FruitSpawnerSettings
   m_EditorClassIdentifier: 
-  _minSpawnDelay: 0.25
-  _maxSpawnDelay: 1
-  _minAngle: -15
+  _maxSpawnDelay: 1.25
+  _minSpawnDelay: 0.3
   _maxAngle: 15
-  _minForce: 18
+  _minAngle: -15
   _maxForce: 22
-  _maxLifeTime: 5
+  _minForce: 18
