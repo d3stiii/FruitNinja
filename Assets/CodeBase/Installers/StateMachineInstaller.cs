@@ -20,7 +20,6 @@ namespace CodeBase.Installers
         private void BindStateFactory() =>
             Container
                 .BindInterfacesTo<StateFactory>()
-                .AsSingle()
-                .CopyIntoDirectSubContainers();
+                .AsSingle();
     }
 }
