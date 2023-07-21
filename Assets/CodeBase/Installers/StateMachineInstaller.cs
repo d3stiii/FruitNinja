@@ -1,4 +1,5 @@
-﻿using CodeBase.States;
+﻿using CodeBase.Services.States;
+using CodeBase.States;
 using Zenject;
 
 namespace CodeBase.Installers
@@ -19,6 +20,7 @@ namespace CodeBase.Installers
         private void BindStateFactory() =>
             Container
                 .BindInterfacesTo<StateFactory>()
-                .AsSingle();
+                .AsSingle()
+                .CopyIntoDirectSubContainers();
     }
 }

@@ -1,6 +1,7 @@
-﻿using Zenject;
+﻿using CodeBase.States;
+using Zenject;
 
-namespace CodeBase.States
+namespace CodeBase.Services.States
 {
     public interface IStateFactory
     {

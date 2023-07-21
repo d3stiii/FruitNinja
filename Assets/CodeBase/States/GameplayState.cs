@@ -1,9 +1,24 @@
-﻿namespace CodeBase.States
+﻿using CodeBase.Services.Fruits;
+
+namespace CodeBase.States
 {
     public class GameplayState : IState
     {
-        public void Enter() { }
+        private readonly IFruitSpawner _fruitSpawner;
 
-        public void Exit() { }
+        public GameplayState(IFruitSpawner fruitSpawner)
+        {
+            _fruitSpawner = fruitSpawner;
+        }
+
+        public void Enter()
+        {
+            _fruitSpawner.StartSpawning();
+        }
+
+        public void Exit()
+        {
+            _fruitSpawner.StopSpawning();
+        }
     }
 }

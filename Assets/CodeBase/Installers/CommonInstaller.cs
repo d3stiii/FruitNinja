@@ -1,4 +1,5 @@
 using CodeBase.Services;
+using CodeBase.Services.AssetManagement;
 using CodeBase.Utilities;
 using UnityEngine;
 using Zenject;
@@ -11,8 +12,10 @@ namespace CodeBase.Installers
 
         public override void InstallBindings()
         {
-            BindSceneLoader();
             BindCoroutineRunner();
+            BindSceneLoader();
+            BindAssetLoader();
+            BindStaticDataProvider();
         }
 
         private void BindCoroutineRunner() =>
@@ -25,5 +28,19 @@ namespace CodeBase.Installers
             Container
                 .BindInterfacesTo<SceneLoader>()
                 .AsSingle();
+
+        private void BindAssetLoader()
+        {
+            Container
+                .BindInterfacesTo<AssetLoader>()
+                .AsSingle();
+        }
+
+        private void BindStaticDataProvider()
+        {
+            Container
+                .BindInterfacesTo<StaticDataProvider>()
+                .AsSingle();
+        }
     }
 }

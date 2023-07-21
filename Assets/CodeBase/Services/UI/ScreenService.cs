@@ -23,7 +23,7 @@ namespace CodeBase.Services.UI
         {
             if (_currentScreen != null)
                 HideCurrentScreen();
-
+            
             var newScreen = _screenFactory.CreateScreen<TScreen>();
             _currentScreen = newScreen;
 
