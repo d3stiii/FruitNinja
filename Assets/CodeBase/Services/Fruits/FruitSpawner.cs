@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using CodeBase.Extensions;
 using CodeBase.Fruits;
 using CodeBase.Services.AssetManagement;
 using CodeBase.StaticData;
@@ -52,7 +53,7 @@ namespace CodeBase.Services.Fruits
             while (true)
             {
                 yield return new WaitForSeconds(Random.Range(_settings.MinSpawnDelay, _settings.MaxSpawnDelay));
-                var randomFruitType = GetRandomFruitType();
+                var randomFruitType = EnumExtensions<FruitType>.GetRandomValue();
                 var spawnPosition = GetSpawnPosition(spawnArea);
                 var rotation = GetRotation();
                 Fruit fruit = _fruitFactory.GetOrCreateFruit(randomFruitType, spawnPosition, rotation);
@@ -65,9 +66,6 @@ namespace CodeBase.Services.Fruits
             var force = fruit.transform.up * Random.Range(_settings.MinForce, _settings.MaxForce);
             fruit.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
         }
-
-        private FruitType GetRandomFruitType() =>
-            (FruitType)_fruitTypeIds.GetValue(Random.Range(1, _fruitTypeIds.Length));
 
         private Quaternion GetRotation() =>
             Quaternion.Euler(0, 0, Random.Range(_settings.MinAngle, _settings.MaxAngle));

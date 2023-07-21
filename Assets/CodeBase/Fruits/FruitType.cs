@@ -2,7 +2,6 @@
 {
     public enum FruitType
     {
-        None,
         Apple,
         Watermelon,
         Lemon
