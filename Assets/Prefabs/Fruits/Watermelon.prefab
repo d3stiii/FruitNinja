@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: _type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6159720179897276846, guid: 857133a288c6c9242a4b00107bc11309, type: 3}
+      propertyPath: _scoreCost
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 897332404747735881, guid: 857133a288c6c9242a4b00107bc11309, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

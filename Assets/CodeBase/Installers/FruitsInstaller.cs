@@ -16,7 +16,14 @@ namespace CodeBase.Installers
             BindFruitProvider();
             BindFruitFactory();
             BindFruitSpawner();
+            BindFruitObserver();
         }
+
+        private void BindFruitObserver() =>
+            Container
+                .Bind<IFruitObserver>()
+                .To<FruitObserver>()
+                .AsSingle();
 
         private void BindFruitProvider()
         {

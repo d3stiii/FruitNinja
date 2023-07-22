@@ -21,14 +21,16 @@ namespace CodeBase.Services.Fruits
         private readonly ICoroutineRunner _coroutineRunner;
         private readonly IFruitFactory _fruitFactory;
         private readonly IStaticDataProvider _staticDataProvider;
+        private readonly IFruitObserver _fruitObserver;
         private FruitSpawnerSettings _settings;
 
         public FruitSpawner(ICoroutineRunner coroutineRunner, IFruitFactory fruitFactory,
-            IStaticDataProvider staticDataProvider)
+            IStaticDataProvider staticDataProvider, IFruitObserver fruitObserver)
         {
             _coroutineRunner = coroutineRunner;
             _fruitFactory = fruitFactory;
             _staticDataProvider = staticDataProvider;
+            _fruitObserver = fruitObserver;
         }
 
         public void Initialize() =>
@@ -51,6 +53,7 @@ namespace CodeBase.Services.Fruits
                 var spawnPosition = GetSpawnPosition(spawnArea);
                 var rotation = GetRotation();
                 Fruit fruit = _fruitFactory.GetOrCreateFruit(randomFruitType, spawnPosition, rotation);
+                _fruitObserver.SubscribeUpdates(fruit);
                 ThrowUpFruit(fruit);
             }
         }

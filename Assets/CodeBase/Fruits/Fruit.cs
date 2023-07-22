@@ -8,6 +8,9 @@ namespace CodeBase.Fruits
     [RequireComponent(typeof(Rigidbody), typeof(Collider))]
     public class Fruit : MonoBehaviour, ISlicable
     {
+        public event Action<Fruit> Sliced;
+
+        [SerializeField] private int _scoreCost;
         [SerializeField] private FruitType _type;
         [SerializeField] private GameObject _wholeFruit;
         [SerializeField] private GameObject _slicedFruit;
@@ -17,6 +20,7 @@ namespace CodeBase.Fruits
         private bool _sliced;
 
         public FruitType Type => _type;
+        public int ScoreCost => _scoreCost;
 
         private void Awake() =>
             _rigidbody = GetComponent<Rigidbody>();
@@ -31,7 +35,9 @@ namespace CodeBase.Fruits
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent<DeadZone>(out var deadZone))
+            {
                 _fruitPool.Release(this);
+            }
         }
 
         public void Initialize(ObjectPool<Fruit> pool) =>
@@ -46,6 +52,7 @@ namespace CodeBase.Fruits
             Rotate(direction);
             AddForceToSlices(direction, position, sliceForce);
             _sliced = true;
+            Sliced?.Invoke(this);
         }
 
         private void Rotate(Vector3 direction)
