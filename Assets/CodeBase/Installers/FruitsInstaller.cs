@@ -17,6 +17,7 @@ namespace CodeBase.Installers
             BindFruitFactory();
             BindFruitSpawner();
             BindFruitObserver();
+            BindAttemptsObserver();
         }
 
         private void BindFruitObserver() =>
@@ -44,6 +45,12 @@ namespace CodeBase.Installers
         private void BindFruitSpawner() =>
             Container
                 .BindInterfacesTo<FruitSpawner>()
+                .AsSingle();
+
+        private void BindAttemptsObserver() => 
+            Container
+                .Bind<IAttemptsObserver>()
+                .To<AttemptsObserver>()
                 .AsSingle();
     }
 }

@@ -9,6 +9,7 @@ namespace CodeBase.Fruits
     public class Fruit : MonoBehaviour, ISlicable
     {
         public event Action<Fruit> Sliced;
+        public event Action Dropped;
 
         [SerializeField] private int _scoreCost;
         [SerializeField] private FruitType _type;
@@ -37,6 +38,10 @@ namespace CodeBase.Fruits
             if (other.TryGetComponent<DeadZone>(out var deadZone))
             {
                 _fruitPool.Release(this);
+                if (!_sliced)
+                {
+                    Dropped?.Invoke();
+                }
             }
         }
 

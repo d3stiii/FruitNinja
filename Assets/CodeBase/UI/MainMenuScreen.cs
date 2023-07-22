@@ -15,6 +15,12 @@ namespace CodeBase.UI
         protected override void Initialize()
         {
             _playButton.onClick.AddListener(() => _stateMachine.EnterState<LoadGameState>());
+            _exitButton.onClick.AddListener(CloseGame);
+        }
+
+        private void CloseGame()
+        {
+            Application.Quit();
         }
 
         [Inject]

@@ -14,7 +14,7 @@ namespace CodeBase.Services
     {
         private readonly ICoroutineRunner _coroutineRunner;
 
-        public SceneLoader(ICoroutineRunner coroutineRunner) => 
+        public SceneLoader(ICoroutineRunner coroutineRunner) =>
             _coroutineRunner = coroutineRunner;
 
         public void LoadScene(string name, Action onLoaded = null) =>
@@ -22,12 +22,6 @@ namespace CodeBase.Services
 
         private IEnumerator Load(string name, Action onLoaded)
         {
-            if (IsAlreadyLoaded(name))
-            {
-                onLoaded?.Invoke();
-                yield break;
-            }
-
             var sceneLoad = SceneManager.LoadSceneAsync(name);
 
             while (!sceneLoad.isDone)
@@ -35,8 +29,5 @@ namespace CodeBase.Services
 
             onLoaded?.Invoke();
         }
-
-        private static bool IsAlreadyLoaded(string name) =>
-            SceneManager.GetActiveScene().name == name;
     }
 }

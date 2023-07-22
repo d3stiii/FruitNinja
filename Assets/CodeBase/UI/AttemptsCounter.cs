@@ -5,25 +5,25 @@ using Zenject;
 
 namespace CodeBase.UI
 {
-    public class ScoreCounter : MonoBehaviour
+    public class AttemptsCounter : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _counter;
         private ISessionDataService _sessionDataService;
 
         private void Awake() =>
-            UpdateScore();
+            UpdateAttempts();
 
         [Inject]
         public void Construct(ISessionDataService sessionDataService)
         {
             _sessionDataService = sessionDataService;
-            sessionDataService.SessionData.ScoreData.Changed += UpdateScore;
+            sessionDataService.SessionData.AttemptsData.Changed += UpdateAttempts;
         }
 
         private void OnDestroy() =>
-            _sessionDataService.SessionData.ScoreData.Changed -= UpdateScore;
+            _sessionDataService.SessionData.AttemptsData.Changed -= UpdateAttempts;
 
-        private void UpdateScore() =>
-            _counter.text = _sessionDataService.SessionData.ScoreData.Score.ToString();
+        private void UpdateAttempts() =>
+            _counter.text = _sessionDataService.SessionData.AttemptsData.AttemptsCount.ToString();
     }
 }

@@ -23,6 +23,7 @@ namespace CodeBase.Services.Fruits
         private readonly IStaticDataProvider _staticDataProvider;
         private readonly IFruitObserver _fruitObserver;
         private FruitSpawnerSettings _settings;
+        private Coroutine _spawnCoroutine;
 
         public FruitSpawner(ICoroutineRunner coroutineRunner, IFruitFactory fruitFactory,
             IStaticDataProvider staticDataProvider, IFruitObserver fruitObserver)
@@ -37,10 +38,10 @@ namespace CodeBase.Services.Fruits
             _settings = _staticDataProvider.GetFruitSpawnerSettings();
 
         public void StartSpawning() =>
-            _coroutineRunner.StartCoroutine(Spawn());
+            _spawnCoroutine = _coroutineRunner.StartCoroutine(Spawn());
 
         public void StopSpawning() =>
-            _coroutineRunner.StopCoroutine(Spawn());
+            _coroutineRunner.StopCoroutine(_spawnCoroutine);
 
         private IEnumerator Spawn()
         {

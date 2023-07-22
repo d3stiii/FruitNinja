@@ -4,22 +4,32 @@ namespace CodeBase.States
 {
     public class GameplayState : IState
     {
+        private readonly StateMachine _stateMachine;
         private readonly IFruitSpawner _fruitSpawner;
-        private readonly IFruitObserver _fruitObserver;
+        private readonly IAttemptsObserver _attemptsObserver;
 
-        public GameplayState(IFruitSpawner fruitSpawner, IFruitObserver fruitObserver)
+        public GameplayState(StateMachine stateMachine, IFruitSpawner fruitSpawner, IAttemptsObserver attemptsObserver)
         {
+            _stateMachine = stateMachine;
             _fruitSpawner = fruitSpawner;
-            _fruitObserver = fruitObserver;
+            _attemptsObserver = attemptsObserver;
         }
 
-        public void Enter() =>
+        public void Enter()
+        {
+            _attemptsObserver.SubscribeUpdates();
+            _attemptsObserver.Lost += OnLost;
             _fruitSpawner.StartSpawning();
+        }
 
         public void Exit()
         {
+            _attemptsObserver.Lost -= OnLost;
+            _attemptsObserver.Cleanup();
             _fruitSpawner.StopSpawning();
-            _fruitObserver.Cleanup();
         }
+
+        private void OnLost() =>
+            _stateMachine.EnterState<GameOverState>();
     }
-} 
+}

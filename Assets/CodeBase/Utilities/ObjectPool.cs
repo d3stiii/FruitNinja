@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Object = UnityEngine.Object;
 
 namespace CodeBase.Utilities
 {
-    public class ObjectPool<T> : IDisposable where T : class
+    public class ObjectPool<T> : IDisposable where T : Object
     {
         private readonly List<T> _list;
         private readonly Func<T> _create;
@@ -81,6 +82,9 @@ namespace CodeBase.Utilities
 
         public void Clear()
         {
+            foreach (var obj in _list)
+                Object.Destroy(obj);
+
             _list.Clear();
             CountAll = 0;
         }

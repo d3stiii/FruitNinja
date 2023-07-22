@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CodeBase.Fruits;
 using CodeBase.Utilities;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace CodeBase.Services.Fruits
     {
         SpawnerRoot GetOrCreateSpawnerRoot();
         Fruit GetOrCreateFruit(FruitType fruitType, Vector3 at, Quaternion rotation);
+        void Cleanup();
     }
 
     public class FruitFactory : IFruitFactory
@@ -59,7 +61,15 @@ namespace CodeBase.Services.Fruits
             }
 
             var prefab = _fruitProvider.GetFruitPrefab(_currentFruitType);
-            return _instantiator.InstantiatePrefabForComponent<Fruit>(prefab, _spawnerRoot.transform);
+            var fruit = _instantiator.InstantiatePrefabForComponent<Fruit>(prefab, _spawnerRoot.transform);
+            return fruit;
+        }
+
+        public void Cleanup()
+        {
+            _spawnerRoot = null;
+            _currentFruitType = default;
+            _fruitPool.Clear();
         }
     }
 }

@@ -5,22 +5,24 @@ using Object = UnityEngine.Object;
 
 namespace CodeBase.Services.UI
 {
-    public interface IScreenFactory
+    public interface IUIFactory
     {
         TScreen CreateScreen<TScreen>() where TScreen : BaseScreen;
         UIRoot GetOrCreateUIRoot();
+        Hud GetOrCreateHud();
     }
 
-    public class ScreenFactory : IScreenFactory
+    public class UIFactory : IUIFactory
     {
         private readonly IInstantiator _instantiator;
-        private readonly IScreenProvider _screenProvider;
+        private readonly IUIProvider _uiProvider;
         private UIRoot _uiRoot;
+        private Hud _hud;
 
-        public ScreenFactory(IInstantiator instantiator, IScreenProvider screenProvider)
+        public UIFactory(IInstantiator instantiator, IUIProvider uiProvider)
         {
             _instantiator = instantiator;
-            _screenProvider = screenProvider;
+            _uiProvider = uiProvider;
         }
 
         public TScreen CreateScreen<TScreen>() where TScreen : BaseScreen
@@ -31,16 +33,27 @@ namespace CodeBase.Services.UI
                     $"UI root shouldn't be null. Call {nameof(GetOrCreateUIRoot)} method to create UI root.");
             }
 
-            var screenPrefab = _screenProvider.GetScreenPrefab<TScreen>();
+            var screenPrefab = _uiProvider.GetScreenPrefab<TScreen>();
             return _instantiator.InstantiatePrefabForComponent<TScreen>(screenPrefab, _uiRoot.transform);
         }
 
         public UIRoot GetOrCreateUIRoot()
         {
             if (_uiRoot == null)
-                _uiRoot = Object.Instantiate(_screenProvider.GetUIRootPrefab());
+                _uiRoot = Object.Instantiate(_uiProvider.GetUIRootPrefab());
 
             return _uiRoot;
+        }
+
+        public Hud GetOrCreateHud()
+        {
+            if (_hud == null)
+            {
+                _hud = _instantiator.InstantiatePrefabForComponent<Hud>(_uiProvider.GetHudPrefab(),
+                    GetOrCreateUIRoot().transform);
+            }
+
+            return _hud;
         }
     }
 }

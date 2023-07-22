@@ -121,8 +121,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiRoot: {fileID: -5802290751729764951, guid: 461878b19ed2e6a48b5f5d4f5c771190, type: 3}
+  _hud: {fileID: 4909593370694134336, guid: 4e97f9e90aed21f4096fc9e1bb6967f5, type: 3}
   _screens:
   - {fileID: -4654623333565182344, guid: f6203cb21226ae543b8d5aa6cd9255d0, type: 3}
+  - {fileID: 2966139915937359339, guid: 8178433ac6db6644dbd67ec893c46d1d, type: 3}
 --- !u!114 &-4410449424765912716
 MonoBehaviour:
   m_ObjectHideFlags: 0

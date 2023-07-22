@@ -9,6 +9,7 @@ namespace CodeBase.Installers
     public class UIInstaller : MonoInstaller
     {
         [SerializeField] private UIRoot _uiRoot;
+        [SerializeField] private Hud _hud;
         [SerializeField] private List<BaseScreen> _screens;
 
         public override void InstallBindings()
@@ -26,16 +27,16 @@ namespace CodeBase.Installers
 
         private void BindScreenFactory() =>
             Container
-                .Bind<IScreenFactory>()
-                .To<ScreenFactory>()
+                .Bind<IUIFactory>()
+                .To<UIFactory>()
                 .AsSingle();
 
         private void BindScreenProvider()
         {
-            var screenProvider = new ScreenProvider(_screens, _uiRoot);
+            var screenProvider = new UIProvider(_screens, _uiRoot, _hud);
             Container
-                .Bind<IScreenProvider>()
-                .To<ScreenProvider>()
+                .Bind<IUIProvider>()
+                .To<UIProvider>()
                 .FromInstance(screenProvider)
                 .AsSingle();
         }

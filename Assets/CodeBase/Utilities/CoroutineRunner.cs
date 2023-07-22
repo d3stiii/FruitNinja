@@ -7,6 +7,7 @@ namespace CodeBase.Utilities
     {
         Coroutine StartCoroutine(IEnumerator coroutine);
         void StopCoroutine(IEnumerator coroutine);
+        void StopCoroutine(Coroutine coroutine);
     }
 
     public class CoroutineRunner : MonoBehaviour, ICoroutineRunner { }
