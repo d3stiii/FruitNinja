@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace CodeBase.UI
+namespace CodeBase.UI.Screens
 {
     public class MainMenuScreen : BaseScreen
     {
@@ -15,12 +15,7 @@ namespace CodeBase.UI
         protected override void Initialize()
         {
             _playButton.onClick.AddListener(() => _stateMachine.EnterState<LoadGameState>());
-            _exitButton.onClick.AddListener(CloseGame);
-        }
-
-        private void CloseGame()
-        {
-            Application.Quit();
+            _exitButton.onClick.AddListener(() => _stateMachine.EnterState<ExitGameState>());
         }
 
         [Inject]

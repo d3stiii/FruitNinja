@@ -9,7 +9,7 @@ namespace CodeBase.EntryPoints
         private StateMachine _stateMachine;
 
         public void Start() => 
-            _stateMachine.EnterState<LoadMenuState>();
+            _stateMachine.EnterState<LoadDataState>();
 
         [Inject]
         public void Construct(StateMachine stateMachine) => 

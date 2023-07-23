@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace CodeBase.UI
+namespace CodeBase.UI.Screens
 {
     public class PauseScreen : BaseScreen
     {

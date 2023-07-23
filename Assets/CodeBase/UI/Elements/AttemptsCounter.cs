@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace CodeBase.UI
+namespace CodeBase.UI.Elements
 {
     public class AttemptsCounter : MonoBehaviour
     {
@@ -11,19 +11,19 @@ namespace CodeBase.UI
         private ISessionDataService _sessionDataService;
 
         private void Awake() =>
-            UpdateAttempts();
+            UpdateCounter();
 
         [Inject]
         public void Construct(ISessionDataService sessionDataService)
         {
             _sessionDataService = sessionDataService;
-            sessionDataService.SessionData.AttemptsData.Changed += UpdateAttempts;
+            sessionDataService.SessionData.AttemptsData.Changed += UpdateCounter;
         }
 
         private void OnDestroy() =>
-            _sessionDataService.SessionData.AttemptsData.Changed -= UpdateAttempts;
+            _sessionDataService.SessionData.AttemptsData.Changed -= UpdateCounter;
 
-        private void UpdateAttempts() =>
+        private void UpdateCounter() =>
             _counter.text = _sessionDataService.SessionData.AttemptsData.AttemptsCount.ToString();
     }
 }

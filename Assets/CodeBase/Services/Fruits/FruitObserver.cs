@@ -14,9 +14,11 @@ namespace CodeBase.Services.Fruits
     {
         private readonly ISessionDataService _sessionDataService;
         private readonly List<Fruit> _fruits = new();
+        private readonly IPersistentDataService _persistentDataService;
 
-        public FruitObserver(ISessionDataService sessionDataService)
+        public FruitObserver(ISessionDataService sessionDataService, IPersistentDataService persistentDataService)
         {
+            _persistentDataService = persistentDataService;
             _sessionDataService = sessionDataService;
         }
 
@@ -34,8 +36,17 @@ namespace CodeBase.Services.Fruits
         private void SpendAttempt() =>
             _sessionDataService.SessionData.AttemptsData.SpendAttempts();
 
-        private void UpdateScore(Fruit fruit) =>
-            _sessionDataService.SessionData.ScoreData.AddScore(fruit.ScoreCost);
+        private void UpdateScore(Fruit fruit)
+        {
+            var scoreData = _sessionDataService.SessionData.ScoreData;
+            scoreData.AddScore(fruit.ScoreCost);
+
+            var highScoreData = _persistentDataService.PersistentData.HighScoreData;
+            if (highScoreData.HighScore < scoreData.Score)
+            {
+                highScoreData.ChangeScore(scoreData.Score);
+            }
+        }
 
         public void Cleanup()
         {

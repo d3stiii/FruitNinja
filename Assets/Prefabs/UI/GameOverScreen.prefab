@@ -475,6 +475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sessionScoreText: {fileID: 6445619779315850359}
+  _highScoreText: {fileID: 5917992089081881983}
   _restartButton: {fileID: 713841198957303754}
   _menuButton: {fileID: 7188143079298056058}
 --- !u!1 &3443076154099392693

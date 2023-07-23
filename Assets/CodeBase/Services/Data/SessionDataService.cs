@@ -4,13 +4,13 @@ namespace CodeBase.Services.Data
 {
     public interface ISessionDataService
     {
-        public SessionData SessionData { get; set; }
+        public SessionData SessionData { get; }
         public void Reset();
     }
 
     public class SessionDataService : ISessionDataService
     {
-        public SessionData SessionData { get; set; } = new();
+        public SessionData SessionData { get; } = new();
 
         public void Reset()
         {
