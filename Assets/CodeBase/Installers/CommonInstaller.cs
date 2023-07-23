@@ -1,5 +1,6 @@
 using CodeBase.Services;
 using CodeBase.Services.AssetManagement;
+using CodeBase.Services.Input;
 using CodeBase.Services.Pause;
 using CodeBase.Utilities;
 using UnityEngine;
@@ -18,6 +19,13 @@ namespace CodeBase.Installers
             BindAssetLoader();
             BindStaticDataProvider();
             BindPauseService();
+            BindInputService();
+        }
+
+        private void BindInputService()
+        {
+            IInputService inputService = Application.isMobilePlatform ? new MobileInputService() : new StandaloneInputService();
+            Container.Bind<IInputService>().FromInstance(inputService);
         }
 
         private void BindPauseService() =>

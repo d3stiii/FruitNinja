@@ -1,4 +1,5 @@
 ﻿using CodeBase.Logic;
+using CodeBase.Services.Input;
 using CodeBase.Services.Pause;
 using UnityEngine;
 using Zenject;
@@ -15,6 +16,7 @@ namespace CodeBase.Blade
         private SphereCollider _collider;
         private Vector3 _previousPosition;
         private IPauseService _pauseService;
+        private IInputService _inputService;
 
         private void Awake()
         {
@@ -26,11 +28,11 @@ namespace CodeBase.Blade
             if (_pauseService.IsPaused)
                 return;
             
-            if (Input.GetMouseButtonDown(0))
+            if (_inputService.SliceButtonDown())
             {
                 EnableSlicing();
             }
-            else if (Input.GetMouseButtonUp(0))
+            else if (_inputService.SliceButtonUp())
             {
                 DisableSlicing();
             }
@@ -64,8 +66,9 @@ namespace CodeBase.Blade
         }
 
         [Inject]
-        public void Construct(IPauseService pauseService)
+        public void Construct(IPauseService pauseService, IInputService inputService)
         {
+            _inputService = inputService;
             _pauseService = pauseService;
             _pauseService.Register(this);
         }
