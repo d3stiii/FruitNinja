@@ -5,7 +5,7 @@ namespace CodeBase.Data.Session
     public class AttemptsData
     {
         public event Action Changed;
-        public int AttemptsCount;
+        public int AttemptsCount { get; private set; }
 
         public AttemptsData()
         {
@@ -16,7 +16,7 @@ namespace CodeBase.Data.Session
         {
             if (AttemptsCount <= 0)
             {
-                return;
+                throw new ArgumentOutOfRangeException(nameof(count), "Attempts count should be more than zero!");
             }
 
             AttemptsCount -= count;

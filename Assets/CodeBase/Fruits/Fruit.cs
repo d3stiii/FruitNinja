@@ -3,6 +3,7 @@ using CodeBase.Logic;
 using CodeBase.Services.Pause;
 using CodeBase.Utilities;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace CodeBase.Fruits
@@ -13,7 +14,7 @@ namespace CodeBase.Fruits
         public event Action<Fruit> Sliced;
         public event Action Dropped;
 
-        [SerializeField] private int _scoreCost;
+        [SerializeField] private int _cost;
         [SerializeField] private FruitType _type;
         [SerializeField] private GameObject _wholeFruit;
         [SerializeField] private GameObject _slicedFruit;
@@ -25,7 +26,7 @@ namespace CodeBase.Fruits
         private Vector3 _savedVelocity;
 
         public FruitType Type => _type;
-        public int ScoreCost => _scoreCost;
+        public int Cost => _cost;
 
         private void Awake() =>
             _rigidbody = GetComponent<Rigidbody>();

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CodeBase.Data.Session;
 using CodeBase.Fruits;
 using CodeBase.Services.Data;
 
@@ -39,12 +40,20 @@ namespace CodeBase.Services.Fruits
         private void UpdateScore(Fruit fruit)
         {
             var scoreData = _sessionDataService.SessionData.ScoreData;
-            scoreData.AddScore(fruit.ScoreCost);
+            scoreData.AddScore(fruit.Cost);
+            UpdateCredits(fruit.Cost);
+            UpdateHighScore(scoreData.Score);
+        }
 
+        private void UpdateCredits(int amount) =>
+            _persistentDataService.PersistentData.CreditsData.AddCredits(amount);
+
+        private void UpdateHighScore(int score)
+        {
             var highScoreData = _persistentDataService.PersistentData.HighScoreData;
-            if (highScoreData.HighScore < scoreData.Score)
+            if (highScoreData.HighScore < score)
             {
-                highScoreData.ChangeScore(scoreData.Score);
+                highScoreData.ChangeScore(score);
             }
         }
 
