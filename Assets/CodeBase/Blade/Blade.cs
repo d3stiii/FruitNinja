@@ -1,10 +1,12 @@
 ﻿using CodeBase.Logic;
+using CodeBase.Services.Pause;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Blade
 {
     [RequireComponent(typeof(Collider))]
-    public class Blade : MonoBehaviour
+    public class Blade : MonoBehaviour, IPauseHandler
     {
         [SerializeField] private float _sliceForce;
         [SerializeField] private float _minSpeed;
@@ -12,6 +14,7 @@ namespace CodeBase.Blade
         private bool _isSwiping;
         private SphereCollider _collider;
         private Vector3 _previousPosition;
+        private IPauseService _pauseService;
 
         private void Awake()
         {
@@ -20,6 +23,9 @@ namespace CodeBase.Blade
 
         private void Update()
         {
+            if (_pauseService.IsPaused)
+                return;
+            
             if (Input.GetMouseButtonDown(0))
             {
                 EnableSlicing();
@@ -36,6 +42,11 @@ namespace CodeBase.Blade
             }
         }
 
+        private void OnDestroy()
+        {
+            _pauseService.Unregister(this);
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent<ISlicable>(out var slicableObj))
@@ -50,6 +61,13 @@ namespace CodeBase.Blade
             {
                 Gizmos.DrawSphere(transform.position, _collider.radius);
             }
+        }
+
+        [Inject]
+        public void Construct(IPauseService pauseService)
+        {
+            _pauseService = pauseService;
+            _pauseService.Register(this);
         }
 
         private void EnableSlicing()
@@ -74,7 +92,7 @@ namespace CodeBase.Blade
             transform.position = position;
         }
 
-        private void UpdateDirection() => 
+        private void UpdateDirection() =>
             _direction = transform.position - _previousPosition;
 
         private void ToggleColliderByVelocity()
@@ -82,5 +100,8 @@ namespace CodeBase.Blade
             var velocity = _direction.magnitude / Time.deltaTime;
             _collider.enabled = velocity > _minSpeed;
         }
+
+        public void Pause() { }
+        public void Unpause() { }
     }
 }

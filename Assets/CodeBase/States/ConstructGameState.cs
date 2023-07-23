@@ -35,7 +35,7 @@ namespace CodeBase.States
 
         private void Cleanup()
         {
-            // _fruitFactory.Cleanup();
+            _fruitFactory.Cleanup();
             _fruitObserver.Cleanup();
             _sessionDataService.Reset();
         }

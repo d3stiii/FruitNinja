@@ -1,12 +1,14 @@
 ﻿using System;
 using CodeBase.Logic;
+using CodeBase.Services.Pause;
 using CodeBase.Utilities;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Fruits
 {
     [RequireComponent(typeof(Rigidbody), typeof(Collider))]
-    public class Fruit : MonoBehaviour, ISlicable
+    public class Fruit : MonoBehaviour, ISlicable, IPauseHandler
     {
         public event Action<Fruit> Sliced;
         public event Action Dropped;
@@ -19,6 +21,8 @@ namespace CodeBase.Fruits
         private ObjectPool<Fruit> _fruitPool;
         private Rigidbody _rigidbody;
         private bool _sliced;
+        private IPauseService _pauseService;
+        private Vector3 _savedVelocity;
 
         public FruitType Type => _type;
         public int ScoreCost => _scoreCost;
@@ -33,6 +37,9 @@ namespace CodeBase.Fruits
             SelectWholeModel();
         }
 
+        private void OnDestroy() =>
+            _pauseService.Unregister(this);
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent<DeadZone>(out var deadZone))
@@ -43,6 +50,13 @@ namespace CodeBase.Fruits
                     Dropped?.Invoke();
                 }
             }
+        }
+
+        [Inject]
+        public void Construct(IPauseService pauseService)
+        {
+            _pauseService = pauseService;
+            _pauseService.Register(this);
         }
 
         public void Initialize(ObjectPool<Fruit> pool) =>
@@ -84,6 +98,18 @@ namespace CodeBase.Fruits
             {
                 slice.AddForce(_rigidbody.velocity, direction, position, sliceForce);
             }
+        }
+
+        public void Pause()
+        {
+            _savedVelocity = _rigidbody.velocity;
+            _rigidbody.isKinematic = true;
+        }
+
+        public void Unpause()
+        {
+            _rigidbody.isKinematic = false;
+            _rigidbody.velocity = _savedVelocity;
         }
     }
 }

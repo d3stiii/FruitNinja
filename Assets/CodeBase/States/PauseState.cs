@@ -4,12 +4,12 @@ using CodeBase.UI;
 
 namespace CodeBase.States
 {
-    public class GameOverState : IState
+    public class PauseState : IState
     {
         private readonly IScreenService _screenService;
         private readonly IPauseService _pauseService;
 
-        public GameOverState(IScreenService screenService, IPauseService pauseService)
+        public PauseState(IScreenService screenService, IPauseService pauseService)
         {
             _screenService = screenService;
             _pauseService = pauseService;
@@ -18,10 +18,13 @@ namespace CodeBase.States
         public void Enter()
         {
             _pauseService.Pause();
-            _screenService.Show<GameOverScreen>();
+            _screenService.Show<PauseScreen>();
         }
 
-        public void Exit() =>
+        public void Exit()
+        {
             _pauseService.Unpause();
+            _screenService.HideCurrentScreen();
+        }
     }
 }

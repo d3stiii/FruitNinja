@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using CodeBase.Fruits;
 using CodeBase.Utilities;
 using UnityEngine;

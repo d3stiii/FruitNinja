@@ -1,5 +1,6 @@
 using CodeBase.Services;
 using CodeBase.Services.AssetManagement;
+using CodeBase.Services.Pause;
 using CodeBase.Utilities;
 using UnityEngine;
 using Zenject;
@@ -16,7 +17,14 @@ namespace CodeBase.Installers
             BindSceneLoader();
             BindAssetLoader();
             BindStaticDataProvider();
+            BindPauseService();
         }
+
+        private void BindPauseService() =>
+            Container
+                .Bind<IPauseService>()
+                .To<PauseService>()
+                .AsSingle();
 
         private void BindCoroutineRunner() =>
             Container
