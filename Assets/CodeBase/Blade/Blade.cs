@@ -1,69 +1,42 @@
-﻿using CodeBase.Logic;
-using CodeBase.Services.Input;
+﻿using CodeBase.Services.Input;
 using CodeBase.Services.Pause;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Blade
 {
-    [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(SphereCollider), typeof(TrailRenderer), typeof(BladeMovement))]
     public class Blade : MonoBehaviour, IPauseHandler
     {
-        [SerializeField] private float _sliceForce;
-        [SerializeField] private float _minSpeed;
-        private Vector3 _direction;
-        private bool _isSwiping;
         private SphereCollider _collider;
+        private TrailRenderer _lineRenderer;
+        private BladeMovement _bladeMovement;
         private Vector3 _previousPosition;
         private IPauseService _pauseService;
         private IInputService _inputService;
 
         private void Awake()
         {
+            _bladeMovement = GetComponent<BladeMovement>();
             _collider = GetComponent<SphereCollider>();
+            _lineRenderer = GetComponent<TrailRenderer>();
+            DisableSlicing();
         }
 
         private void Update()
         {
-            if (_pauseService.IsPaused)
-                return;
-            
-            if (_inputService.SliceButtonDown())
-            {
-                EnableSlicing();
-            }
-            else if (_inputService.SliceButtonUp())
+            if (_inputService.SliceButtonUp() || _pauseService.IsPaused)
             {
                 DisableSlicing();
             }
-            else if (_isSwiping)
+            else if (_inputService.SliceButtonDown())
             {
-                UpdatePosition();
-                UpdateDirection();
-                ToggleColliderByVelocity();
+                EnableSlicing();
             }
         }
 
-        private void OnDestroy()
-        {
+        private void OnDestroy() =>
             _pauseService.Unregister(this);
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.TryGetComponent<ISlicable>(out var slicableObj))
-            {
-                slicableObj.Slice(_direction, transform.position, _sliceForce);
-            }
-        }
-
-        private void OnDrawGizmos()
-        {
-            if (_isSwiping)
-            {
-                Gizmos.DrawSphere(transform.position, _collider.radius);
-            }
-        }
 
         [Inject]
         public void Construct(IPauseService pauseService, IInputService inputService)
@@ -75,33 +48,17 @@ namespace CodeBase.Blade
 
         private void EnableSlicing()
         {
-            UpdatePosition();
-
+            _lineRenderer.enabled = true;
+            _bladeMovement.enabled = true;
             _collider.enabled = true;
-            _isSwiping = true;
         }
 
         private void DisableSlicing()
         {
+            _lineRenderer.enabled = false;
             _collider.enabled = false;
-            _isSwiping = false;
-        }
-
-        private void UpdatePosition()
-        {
-            Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            position.z = 0f;
-            _previousPosition = transform.position;
-            transform.position = position;
-        }
-
-        private void UpdateDirection() =>
-            _direction = transform.position - _previousPosition;
-
-        private void ToggleColliderByVelocity()
-        {
-            var velocity = _direction.magnitude / Time.deltaTime;
-            _collider.enabled = velocity > _minSpeed;
+            _bladeMovement.enabled = false;
+            _lineRenderer.Clear();
         }
 
         public void Pause() { }
