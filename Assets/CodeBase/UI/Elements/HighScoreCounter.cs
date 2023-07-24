@@ -1,5 +1,4 @@
-﻿using System;
-using CodeBase.Services.Data;
+﻿using CodeBase.Services.Data;
 using TMPro;
 using UnityEngine;
 using Zenject;

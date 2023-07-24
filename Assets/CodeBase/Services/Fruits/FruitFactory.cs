@@ -1,5 +1,6 @@
 ﻿using System;
 using CodeBase.Fruits;
+using CodeBase.Services.AssetManagement;
 using CodeBase.Utilities;
 using UnityEngine;
 using Zenject;
@@ -16,28 +17,30 @@ namespace CodeBase.Services.Fruits
 
     public class FruitFactory : IFruitFactory
     {
+        private const string FruitSpawnerRootPath = "Prefabs/FruitSpawnerRoot";
         private readonly IInstantiator _instantiator;
-        private readonly IFruitProvider _fruitProvider;
+        private readonly IStaticDataProvider _staticDataProvider;
+        private readonly IAssetLoader _assetLoader;
         private readonly ObjectPool<Fruit> _fruitPool;
         private SpawnerRoot _spawnerRoot;
         private FruitType _currentFruitType;
 
-        public FruitFactory(IInstantiator instantiator, IFruitProvider fruitProvider)
+        public FruitFactory(IInstantiator instantiator,
+            IStaticDataProvider staticDataProvider, IAssetLoader assetLoader)
         {
             _instantiator = instantiator;
-            _fruitProvider = fruitProvider;
-            _fruitPool = new ObjectPool<Fruit>(CreateFruit, fruit =>
-                {
-                    fruit.gameObject.SetActive(true);
-                    fruit.Initialize(_fruitPool);
-                },
+            _staticDataProvider = staticDataProvider;
+            _assetLoader = assetLoader;
+            _fruitPool = new ObjectPool<Fruit>(CreateFruit, fruit => fruit.gameObject.SetActive(true),
                 fruit => fruit.gameObject.SetActive(false));
         }
 
         public SpawnerRoot GetOrCreateSpawnerRoot()
         {
             if (_spawnerRoot == null)
-                _spawnerRoot = Object.Instantiate(_fruitProvider.GetSpawnerRootPrefab());
+            {
+                _spawnerRoot = Object.Instantiate(_assetLoader.LoadAsset<SpawnerRoot>(FruitSpawnerRootPath));
+            }
 
             return _spawnerRoot;
         }
@@ -59,8 +62,11 @@ namespace CodeBase.Services.Fruits
                     $"Spawner root shouldn't be null. Call {nameof(GetOrCreateSpawnerRoot)} method to create Spawner root.");
             }
 
-            var prefab = _fruitProvider.GetFruitPrefab(_currentFruitType);
+            var fruitData = _staticDataProvider.GetFruitData(_currentFruitType);
+            var prefab = fruitData.Prefab;
             var fruit = _instantiator.InstantiatePrefabForComponent<Fruit>(prefab, _spawnerRoot.transform);
+            fruit.Initialize(fruitData);
+            fruit.GetComponent<FruitDropper>().Initialize(_fruitPool);
             return fruit;
         }
 

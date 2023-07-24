@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CodeBase.Fruits
+namespace CodeBase.Environment
 {
     [RequireComponent(typeof(Collider))]
     public class DeadZone : MonoBehaviour { }

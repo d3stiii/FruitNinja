@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using CodeBase.Data.Session;
 using CodeBase.Fruits;
 using CodeBase.Services.Data;
+using CodeBase.StaticData;
 
 namespace CodeBase.Services.Fruits
 {
@@ -37,7 +37,7 @@ namespace CodeBase.Services.Fruits
         private void SpendAttempt() =>
             _sessionDataService.SessionData.AttemptsData.SpendAttempts();
 
-        private void UpdateScore(Fruit fruit)
+        private void UpdateScore(FruitData fruit)
         {
             var scoreData = _sessionDataService.SessionData.ScoreData;
             scoreData.AddScore(fruit.Cost);
