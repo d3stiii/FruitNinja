@@ -12,7 +12,6 @@ namespace CodeBase.Fruits
         private FruitData _fruitData;
 
         public FruitType Type => _fruitData.Type;
-        public int Cost => _fruitData.Cost;
 
         public void Initialize(FruitData fruitData) => _fruitData = fruitData;
 

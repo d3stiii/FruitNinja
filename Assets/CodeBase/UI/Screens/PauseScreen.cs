@@ -21,7 +21,7 @@ namespace CodeBase.UI.Screens
         protected override void Initialize()
         {
             _resumeButton.onClick.AddListener(() => _stateMachine.EnterState<GameplayState>());
-            _menuButton.onClick.AddListener(() => _stateMachine.EnterState<ConstructMenuState>());
+            _menuButton.onClick.AddListener(() => _stateMachine.EnterState<LoadMenuState>());
             _restartButton.onClick.AddListener(() => _stateMachine.EnterState<RestartState>());
         }
     }

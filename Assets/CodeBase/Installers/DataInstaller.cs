@@ -1,4 +1,5 @@
-﻿using CodeBase.Services.Data;
+﻿using CodeBase.Services.AssetManagement;
+using CodeBase.Services.Data;
 using CodeBase.Services.SaveLoad;
 using Zenject;
 
@@ -8,10 +9,16 @@ namespace CodeBase.Installers
     {
         public override void InstallBindings()
         {
+            BindStaticDataProvider();
             BindSessionDataService();
             BindPersistentDataService();
             BindSaveLoadService();
         }
+
+        private void BindStaticDataProvider() =>
+            Container
+                .BindInterfacesTo<StaticDataProvider>()
+                .AsSingle();
 
         private void BindSaveLoadService() =>
             Container

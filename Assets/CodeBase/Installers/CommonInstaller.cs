@@ -17,14 +17,14 @@ namespace CodeBase.Installers
             BindCoroutineRunner();
             BindSceneLoader();
             BindAssetLoader();
-            BindStaticDataProvider();
             BindPauseService();
             BindInputService();
         }
 
         private void BindInputService()
         {
-            IInputService inputService = Application.isMobilePlatform ? new MobileInputService() : new StandaloneInputService();
+            IInputService inputService =
+                Application.isMobilePlatform ? new MobileInputService() : new StandaloneInputService();
             Container.Bind<IInputService>().FromInstance(inputService);
         }
 
@@ -50,11 +50,6 @@ namespace CodeBase.Installers
             Container
                 .Bind<IAssetLoader>()
                 .To<AssetLoader>()
-                .AsSingle();
-
-        private void BindStaticDataProvider() =>
-            Container
-                .BindInterfacesTo<StaticDataProvider>()
                 .AsSingle();
     }
 }

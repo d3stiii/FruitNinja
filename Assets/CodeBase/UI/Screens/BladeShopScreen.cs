@@ -7,28 +7,24 @@ using Zenject;
 
 namespace CodeBase.UI.Screens
 {
-    public class MainMenuScreen : BaseScreen
+    public class BladeShopScreen : BaseScreen
     {
-        [SerializeField] private Button _playButton;
-        [SerializeField] private Button _exitButton;
-        [SerializeField] private Button _bladeShopButton;
         [SerializeField] private TextMeshProUGUI _coinsText;
-        private StateMachine _stateMachine;
+        [SerializeField] private Button _backButton;
         private IPersistentDataService _persistentDataService;
+        private StateMachine _stateMachine;
 
         protected override void Initialize()
         {
-            _playButton.onClick.AddListener(() => _stateMachine.EnterState<LoadGameState>());
-            _exitButton.onClick.AddListener(() => _stateMachine.EnterState<ExitGameState>());
-            _bladeShopButton.onClick.AddListener(() => _stateMachine.EnterState<BladeShopState>());
+            _backButton.onClick.AddListener(() => _stateMachine.EnterState<MainMenuState>());
             _coinsText.text = _persistentDataService.PersistentData.CreditsData.Credits.ToString();
         }
 
         [Inject]
         public void Construct(StateMachine stateMachine, IPersistentDataService persistentDataService)
         {
-            _persistentDataService = persistentDataService;
             _stateMachine = stateMachine;
+            _persistentDataService = persistentDataService;
         }
     }
 }

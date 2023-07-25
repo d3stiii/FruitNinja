@@ -52,11 +52,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
+  - {fileID: -4946436715994882249}
   - {fileID: -849759639355268056}
   - {fileID: -6590911196153579593}
   - {fileID: 494718093032145898}
   - {fileID: -4410449424765912716}
-  - {fileID: -4946436715994882249}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 0
   _editorReflectionBakingCoverageMode: 0
@@ -126,6 +126,7 @@ MonoBehaviour:
   - {fileID: -4654623333565182344, guid: f6203cb21226ae543b8d5aa6cd9255d0, type: 3}
   - {fileID: 2966139915937359339, guid: 8178433ac6db6644dbd67ec893c46d1d, type: 3}
   - {fileID: 3584128420527598740, guid: 2ec04623aa6b3504990659548326122e, type: 3}
+  - {fileID: -5544181948657174868, guid: 00f23a61cf3c0e44e80d3d6cdbf536f3, type: 3}
 --- !u!114 &-4410449424765912716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,11 +139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0fc4ed069d247ea99a245107650a04e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fruits:
-  - {fileID: 1194563351253064785, guid: b6338f3afe1e9ce4dbe608722817b38e, type: 3}
-  - {fileID: 4991920078558691450, guid: 9b9db06445e79394e974fb31a5b41bb0, type: 3}
-  - {fileID: 2332977492340128094, guid: 3411cbc69d5a265408d8b7621681d99e, type: 3}
-  _spawnerRoot: {fileID: 5816455406160899420, guid: 3395631264611b244902a638373a3f57, type: 3}
 --- !u!114 &-4946436715994882249
 MonoBehaviour:
   m_ObjectHideFlags: 0
