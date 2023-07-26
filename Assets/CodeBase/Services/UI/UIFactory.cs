@@ -1,5 +1,4 @@
-﻿using System;
-using CodeBase.UI;
+﻿using CodeBase.UI;
 using CodeBase.UI.Screens;
 using Zenject;
 using Object = UnityEngine.Object;
@@ -9,7 +8,6 @@ namespace CodeBase.Services.UI
     public interface IUIFactory
     {
         TScreen CreateScreen<TScreen>() where TScreen : BaseScreen;
-        UIRoot GetOrCreateUIRoot();
         Hud GetOrCreateHud();
     }
 
@@ -28,14 +26,8 @@ namespace CodeBase.Services.UI
 
         public TScreen CreateScreen<TScreen>() where TScreen : BaseScreen
         {
-            if (_uiRoot == null)
-            {
-                throw new NullReferenceException(
-                    $"UI root shouldn't be null. Call {nameof(GetOrCreateUIRoot)} method to create UI root.");
-            }
-
             var screenPrefab = _uiProvider.GetScreenPrefab<TScreen>();
-            return _instantiator.InstantiatePrefabForComponent<TScreen>(screenPrefab, _uiRoot.transform);
+            return _instantiator.InstantiatePrefabForComponent<TScreen>(screenPrefab, GetOrCreateUIRoot().transform);
         }
 
         public UIRoot GetOrCreateUIRoot()

@@ -14,12 +14,12 @@ namespace CodeBase.States
             _sceneLoader = sceneLoader;
         }
 
-        public void Enter() => 
+        public void Enter() =>
             _sceneLoader.LoadScene(MenuSceneName, OnLoaded);
 
         public void Exit() { }
 
         private void OnLoaded() =>
-            _stateMachine.EnterState<ConstructMenuState>();
+            _stateMachine.EnterState<MainMenuState>();
     }
 }
