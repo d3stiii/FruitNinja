@@ -6,11 +6,11 @@ namespace CodeBase.Data.Persistent
     public class HighScoreData
     {
         public event Action Changed;
-        public int HighScore;
+        public int Value;
 
         public void ChangeScore(int value)
         {
-            HighScore = value;
+            Value = value;
             Changed?.Invoke();
         }
     }

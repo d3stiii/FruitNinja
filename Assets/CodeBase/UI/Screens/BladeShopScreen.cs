@@ -17,7 +17,7 @@ namespace CodeBase.UI.Screens
         protected override void Initialize()
         {
             _backButton.onClick.AddListener(() => _stateMachine.EnterState<MainMenuState>());
-            _coinsText.text = _persistentDataService.PersistentData.CreditsData.Credits.ToString();
+            _coinsText.text = _persistentDataService.PersistentData.CreditsData.Value.ToString();
         }
 
         [Inject]

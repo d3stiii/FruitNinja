@@ -42,7 +42,7 @@ namespace CodeBase.Services.Fruits
             var scoreData = _sessionDataService.SessionData.ScoreData;
             scoreData.AddScore(fruit.Cost);
             UpdateCredits(fruit.Cost);
-            UpdateHighScore(scoreData.Score);
+            UpdateHighScore(scoreData.Value);
         }
 
         private void UpdateCredits(int amount) =>
@@ -51,7 +51,7 @@ namespace CodeBase.Services.Fruits
         private void UpdateHighScore(int score)
         {
             var highScoreData = _persistentDataService.PersistentData.HighScoreData;
-            if (highScoreData.HighScore < score)
+            if (highScoreData.Value < score)
             {
                 highScoreData.ChangeScore(score);
             }

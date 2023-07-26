@@ -24,6 +24,6 @@ namespace CodeBase.UI.Elements
             _sessionDataService.SessionData.ScoreData.Changed -= UpdateCounter;
 
         private void UpdateCounter() =>
-            _counter.text = _sessionDataService.SessionData.ScoreData.Score.ToString();
+            _counter.text = _sessionDataService.SessionData.ScoreData.Value.ToString();
     }
 }

@@ -28,8 +28,8 @@ namespace CodeBase.UI.Screens
 
         protected override void Initialize()
         {
-            _sessionScoreText.text = $"Score: {_sessionDataService.SessionData.ScoreData.Score}";
-            _highScoreText.text = $"High score: {_persistentDataService.PersistentData.HighScoreData.HighScore}";
+            _sessionScoreText.text = $"Score: {_sessionDataService.SessionData.ScoreData.Value}";
+            _highScoreText.text = $"High score: {_persistentDataService.PersistentData.HighScoreData.Value}";
             _restartButton.onClick.AddListener(() => _stateMachine.EnterState<RestartState>());
             _menuButton.onClick.AddListener(() => _stateMachine.EnterState<LoadMenuState>());
         }

@@ -6,7 +6,7 @@ namespace CodeBase.Data.Persistent
     public class CreditsData
     {
         public event Action Changed;
-        public int Credits;
+        public int Value;
 
         public void AddCredits(int amount)
         {
@@ -16,7 +16,7 @@ namespace CodeBase.Data.Persistent
                     "Credits amount should be more than zero!");
             }
 
-            Credits += amount;
+            Value += amount;
             Changed?.Invoke();
         }
     }

@@ -21,7 +21,7 @@ namespace CodeBase.UI.Screens
             _playButton.onClick.AddListener(() => _stateMachine.EnterState<LoadGameState>());
             _exitButton.onClick.AddListener(() => _stateMachine.EnterState<ExitGameState>());
             _bladeShopButton.onClick.AddListener(() => _stateMachine.EnterState<BladeShopState>());
-            _coinsText.text = _persistentDataService.PersistentData.CreditsData.Credits.ToString();
+            _coinsText.text = _persistentDataService.PersistentData.CreditsData.Value.ToString();
         }
 
         [Inject]

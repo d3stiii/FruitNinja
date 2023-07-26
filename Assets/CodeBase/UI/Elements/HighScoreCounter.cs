@@ -25,7 +25,7 @@ namespace CodeBase.UI.Elements
 
         private void UpdateCounter()
         {
-            _counter.text = $"Best: {_persistentDataService.PersistentData.HighScoreData.HighScore}";
+            _counter.text = $"Best: {_persistentDataService.PersistentData.HighScoreData.Value}";
         }
     }
 }

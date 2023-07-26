@@ -24,7 +24,7 @@ namespace CodeBase.Services.Fruits
 
         private void CheckLose()
         {
-            if (_sessionDataService.SessionData.AttemptsData.AttemptsCount <= 0)
+            if (_sessionDataService.SessionData.AttemptsData.Value <= 0)
             {
                 Lost?.Invoke();
             }

@@ -24,6 +24,6 @@ namespace CodeBase.UI.Elements
             _sessionDataService.SessionData.AttemptsData.Changed -= UpdateCounter;
 
         private void UpdateCounter() =>
-            _counter.text = _sessionDataService.SessionData.AttemptsData.AttemptsCount.ToString();
+            _counter.text = _sessionDataService.SessionData.AttemptsData.Value.ToString();
     }
 }
