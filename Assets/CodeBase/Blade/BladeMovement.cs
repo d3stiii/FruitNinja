@@ -8,12 +8,10 @@ namespace CodeBase.Blade
         private Vector3 _previousPosition;
         private SphereCollider _collider;
 
-        public Vector3 Direction => transform.position - _previousPosition;
+        public Vector3 Direction { get; private set; }
 
-        private void Awake()
-        {
+        private void Awake() =>
             _collider = GetComponent<SphereCollider>();
-        }
 
         private void OnEnable() =>
             UpdatePosition();
@@ -21,8 +19,12 @@ namespace CodeBase.Blade
         private void Update()
         {
             UpdatePosition();
+            UpdateDirection();
             ToggleColliderByVelocity();
         }
+
+        private void UpdateDirection() =>
+            Direction = transform.position - _previousPosition;
 
         private void UpdatePosition()
         {
