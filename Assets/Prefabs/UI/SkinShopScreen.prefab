@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 6555815303830219213}
   - component: {fileID: -5544181948657174868}
   m_Layer: 5
-  m_Name: BladeShopScreen
+  m_Name: SkinShopScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -943,7 +943,7 @@ GameObject:
   - component: {fileID: 1194761476302710027}
   - component: {fileID: 2234118453304925729}
   - component: {fileID: 7601124499962725244}
-  - component: {fileID: 1407423852854130582}
+  - component: {fileID: 3810225392469239394}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -1010,7 +1010,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &1407423852854130582
+--- !u!114 &3810225392469239394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7816169585682688528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a71041a1fe144f17b86202d5afbd61a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 151b91893d39a7d4ea3c0bad04220f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _itemPrefab: {fileID: 903743044218469737, guid: 59938830d32f4d54d9e1c8378e9944a0, type: 3}

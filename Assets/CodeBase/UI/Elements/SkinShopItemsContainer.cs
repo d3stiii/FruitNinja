@@ -5,14 +5,14 @@ using Zenject;
 
 namespace CodeBase.UI.Elements
 {
-    public class BladeShopItemsContainer : MonoBehaviour
+    public class SkinShopItemsContainer : MonoBehaviour
     {
         [SerializeField] private SkinShopItem _itemPrefab;
         private readonly List<SkinShopItem> _items = new();
-        private ISkinShopService _shopService;
+        private IShopService<SkinShopItemDescription> _shopService;
 
         [Inject]
-        public void Construct(ISkinShopService shopService)
+        public void Construct(IShopService<SkinShopItemDescription> shopService)
         {
             _shopService = shopService;
         }

@@ -3,18 +3,18 @@ using CodeBase.UI.Screens;
 
 namespace CodeBase.States
 {
-    public class BladeShopState : IState
+    public class SkinShopState : IState
     {
         private readonly IScreenService _screenService;
 
-        public BladeShopState(IScreenService screenService)
+        public SkinShopState(IScreenService screenService)
         {
             _screenService = screenService;
         }
 
         public void Enter()
         {
-            _screenService.Show<BladeShopScreen>();
+            _screenService.Show<SkinShopScreen>();
         }
 
         public void Exit() { }

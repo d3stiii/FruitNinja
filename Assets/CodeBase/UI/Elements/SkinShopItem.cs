@@ -12,9 +12,9 @@ namespace CodeBase.UI.Elements
         [SerializeField] private TextMeshProUGUI _priceText;
         [SerializeField] private Image _icon;
         private SkinShopItemDescription _itemDescription;
-        private ISkinShopService _shopService;
+        private IShopService<SkinShopItemDescription> _shopService;
 
-        public void Construct(SkinShopItemDescription itemDescription, ISkinShopService shopService)
+        public void Construct(SkinShopItemDescription itemDescription, IShopService<SkinShopItemDescription> shopService)
         {
             _shopService = shopService;
             _itemDescription = itemDescription;

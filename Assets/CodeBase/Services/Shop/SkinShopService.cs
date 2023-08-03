@@ -7,14 +7,14 @@ using UnityEngine;
 
 namespace CodeBase.Services.Shop
 {
-    public interface ISkinShopService
+    public interface IShopService<TItem>
     {
         event Action Purchased;
-        IEnumerable<SkinShopItemDescription> GetAvailableItems();
-        void Purchase(SkinShopItemDescription item);
+        IEnumerable<TItem> GetAvailableItems();
+        void Purchase(TItem item);
     }
 
-    public class SkinShopService : ISkinShopService
+    public class SkinShopService : IShopService<SkinShopItemDescription>
     {
         private readonly IStaticDataProvider _staticDataProvider;
         private readonly IPersistentDataService _persistentDataService;
@@ -47,10 +47,10 @@ namespace CodeBase.Services.Shop
 
         public void Purchase(SkinShopItemDescription item)
         {
-            Debug.Log($"Purchased item with id: {item.Id}");
             _persistentDataService.PersistentData.PurchaseData.AddPurchase(item);
             _saveLoadService.Save();
             Purchased?.Invoke();
+            Debug.Log($"Purchased item with id: {item.Id}");
         }
     }
 }

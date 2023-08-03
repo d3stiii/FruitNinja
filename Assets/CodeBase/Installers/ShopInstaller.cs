@@ -12,7 +12,7 @@ namespace CodeBase.Installers
 
         private void BindSkinShopService() =>
             Container
-                .Bind<ISkinShopService>()
+                .Bind(typeof(IShopService<SkinShopItemDescription>))
                 .To<SkinShopService>()
                 .AsSingle();
     }

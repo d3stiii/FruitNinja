@@ -7,7 +7,7 @@ using Zenject;
 
 namespace CodeBase.UI.Screens
 {
-    public class BladeShopScreen : BaseScreen
+    public class SkinShopScreen : BaseScreen
     {
         [SerializeField] private TextMeshProUGUI _coinsText;
         [SerializeField] private Button _backButton;

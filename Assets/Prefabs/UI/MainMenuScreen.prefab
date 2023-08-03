@@ -483,7 +483,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BLADE SHOP
+  m_text: SKIN SHOP
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -941,7 +941,7 @@ GameObject:
   - component: {fileID: 8852923869396322822}
   - component: {fileID: 8992420802101253161}
   m_Layer: 5
-  m_Name: BladeShopButton
+  m_Name: SkinShopButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1303,5 +1303,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playButton: {fileID: 5705076766450176077}
   _exitButton: {fileID: 3623821256633620008}
-  _bladeShopButton: {fileID: 8992420802101253161}
+  _skinShopButton: {fileID: 8992420802101253161}
   _coinsText: {fileID: 6690512167742605963}
