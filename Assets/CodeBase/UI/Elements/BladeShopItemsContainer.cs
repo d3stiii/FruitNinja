@@ -7,12 +7,12 @@ namespace CodeBase.UI.Elements
 {
     public class BladeShopItemsContainer : MonoBehaviour
     {
-        [SerializeField] private BladeShopItem _itemPrefab;
-        private readonly List<BladeShopItem> _items = new();
-        private IShopService _shopService;
+        [SerializeField] private SkinShopItem _itemPrefab;
+        private readonly List<SkinShopItem> _items = new();
+        private ISkinShopService _shopService;
 
         [Inject]
-        public void Construct(IShopService shopService)
+        public void Construct(ISkinShopService shopService)
         {
             _shopService = shopService;
         }

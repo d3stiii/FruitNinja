@@ -7,13 +7,13 @@ namespace CodeBase.Installers
     {
         public override void InstallBindings()
         {
-            BindShopService();
+            BindSkinShopService();
         }
 
-        private void BindShopService() =>
+        private void BindSkinShopService() =>
             Container
-                .Bind<IShopService>()
-                .To<ShopService>()
+                .Bind<ISkinShopService>()
+                .To<SkinShopService>()
                 .AsSingle();
     }
 }

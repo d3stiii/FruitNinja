@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d422db3d9d8d417481a35ebdc542bf92, type: 3}
-  m_Name: BladeShopItemsData
+  m_Name: SkinShopItemsData
   m_EditorClassIdentifier: 
   _shopItems:
   - Id: 23a38e62-f5e6-489f-ba77-20c67ecc9137

@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 namespace CodeBase.UI.Elements
 {
-    public class BladeShopItem : MonoBehaviour
+    public class SkinShopItem : MonoBehaviour
     {
         [SerializeField] private Button _purchaseButton;
         [SerializeField] private TextMeshProUGUI _nameText;
         [SerializeField] private TextMeshProUGUI _priceText;
         [SerializeField] private Image _icon;
-        private BladeShopItemDescription _itemDescription;
-        private IShopService _shopService;
+        private SkinShopItemDescription _itemDescription;
+        private ISkinShopService _shopService;
 
-        public void Construct(BladeShopItemDescription itemDescription, IShopService shopService)
+        public void Construct(SkinShopItemDescription itemDescription, ISkinShopService shopService)
         {
             _shopService = shopService;
             _itemDescription = itemDescription;
@@ -28,7 +28,7 @@ namespace CodeBase.UI.Elements
             _purchaseButton.onClick.AddListener(Purchase);
         }
 
-        private void Purchase() => 
+        private void Purchase() =>
             _shopService.Purchase(_itemDescription);
     }
 }

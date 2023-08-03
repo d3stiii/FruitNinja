@@ -5,7 +5,7 @@ using UnityEngine;
 namespace CodeBase.Services.Shop
 {
     [Serializable]
-    public class BladeShopItemDescription
+    public class SkinShopItemDescription
     {
         public string Id;
         public int Price;

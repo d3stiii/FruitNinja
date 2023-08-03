@@ -7,20 +7,20 @@ using UnityEngine;
 
 namespace CodeBase.Services.Shop
 {
-    public interface IShopService
+    public interface ISkinShopService
     {
         event Action Purchased;
-        IEnumerable<BladeShopItemDescription> GetAvailableItems();
-        void Purchase(BladeShopItemDescription item);
+        IEnumerable<SkinShopItemDescription> GetAvailableItems();
+        void Purchase(SkinShopItemDescription item);
     }
 
-    public class ShopService : IShopService
+    public class SkinShopService : ISkinShopService
     {
         private readonly IStaticDataProvider _staticDataProvider;
         private readonly IPersistentDataService _persistentDataService;
         private readonly ISaveLoadService _saveLoadService;
 
-        public ShopService(IStaticDataProvider staticDataProvider, IPersistentDataService persistentDataService,
+        public SkinShopService(IStaticDataProvider staticDataProvider, IPersistentDataService persistentDataService,
             ISaveLoadService saveLoadService)
         {
             _staticDataProvider = staticDataProvider;
@@ -30,7 +30,7 @@ namespace CodeBase.Services.Shop
 
         public event Action Purchased;
 
-        public IEnumerable<BladeShopItemDescription> GetAvailableItems()
+        public IEnumerable<SkinShopItemDescription> GetAvailableItems()
         {
             var purchasedItems = _persistentDataService.PersistentData.PurchaseData.BoughtItems;
 
@@ -45,7 +45,7 @@ namespace CodeBase.Services.Shop
             }
         }
 
-        public void Purchase(BladeShopItemDescription item)
+        public void Purchase(SkinShopItemDescription item)
         {
             Debug.Log($"Purchased item with id: {item.Id}");
             _persistentDataService.PersistentData.PurchaseData.AddPurchase(item);

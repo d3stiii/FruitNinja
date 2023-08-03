@@ -9,7 +9,7 @@ namespace CodeBase.Data.Persistent
     {
         public List<BoughtItem> BoughtItems = new();
 
-        public void AddPurchase(BladeShopItemDescription itemDescription)
+        public void AddPurchase(SkinShopItemDescription itemDescription)
         {
             BoughtItems.Add(new BoughtItem
             {

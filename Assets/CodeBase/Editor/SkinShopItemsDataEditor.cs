@@ -6,18 +6,18 @@ using UnityEngine;
 
 namespace CodeBase.Editor
 {
-    [CustomEditor(typeof(BladeShopItemsData))]
-    public class BladeShopItemsDataEditor : UnityEditor.Editor
+    [CustomEditor(typeof(SkinShopItemsData))]
+    public class SkinShopItemsDataEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            BladeShopItemsData itemsData = (BladeShopItemsData)target;
+            SkinShopItemsData itemsData = (SkinShopItemsData)target;
 
             if (GUILayout.Button("Add item with unique id"))
             {
-                var item = new BladeShopItemDescription
+                var item = new SkinShopItemDescription
                 {
                     Id = Guid.NewGuid().ToString()
                 };
