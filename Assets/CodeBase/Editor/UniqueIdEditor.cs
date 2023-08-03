@@ -27,8 +27,7 @@ namespace CodeBase.Editor
                 }
             }
         }
-
-
+        
         private void Generate(UniqueId uniqueId)
         {
             uniqueId.Id = Guid.NewGuid().ToString();
