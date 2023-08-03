@@ -2,24 +2,27 @@
 using System.Linq;
 using CodeBase.Fruits;
 using CodeBase.StaticData;
-using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Services.AssetManagement
 {
     public interface IStaticDataProvider
     {
-        public FruitSpawnerSettings GetFruitSpawnerSettings();
-        public FruitData GetFruitData(FruitType fruitType);
+        FruitSpawnerSettings GetFruitSpawnerSettings();
+        FruitData GetFruitData(FruitType fruitType);
+        BladeShopItemsData GetShopItemsData();
     }
 
     public class StaticDataProvider : IStaticDataProvider, IInitializable
     {
         private const string FruitSpawnerSettingsPath = "StaticData/Fruits/FruitSpawnerSettings";
         private const string FruitsDataPath = "StaticData/Fruits";
+        private const string ShopItemsDataPath = "StaticData/Shop/BladeShopItemsData";
+
         private readonly IAssetLoader _assetLoader;
         private FruitSpawnerSettings _fruitSpawnerSettings;
         private Dictionary<FruitType, FruitData> _fruitsData;
+        private BladeShopItemsData _shopItemsData;
 
         public StaticDataProvider(IAssetLoader assetLoader) =>
             _assetLoader = assetLoader;
@@ -27,8 +30,9 @@ namespace CodeBase.Services.AssetManagement
         public void Initialize()
         {
             _fruitSpawnerSettings = _assetLoader.LoadAsset<FruitSpawnerSettings>(FruitSpawnerSettingsPath);
-            _fruitsData = Resources.LoadAll<FruitData>(FruitsDataPath)
+            _fruitsData = _assetLoader.LoadAllAssets<FruitData>(FruitsDataPath)
                 .ToDictionary(fruit => fruit.Type, fruit => fruit);
+            _shopItemsData = _assetLoader.LoadAsset<BladeShopItemsData>(ShopItemsDataPath);
         }
 
         public FruitData GetFruitData(FruitType fruitType) =>
@@ -36,5 +40,8 @@ namespace CodeBase.Services.AssetManagement
 
         public FruitSpawnerSettings GetFruitSpawnerSettings() =>
             _fruitSpawnerSettings;
+
+        public BladeShopItemsData GetShopItemsData() =>
+            _shopItemsData;
     }
 }
