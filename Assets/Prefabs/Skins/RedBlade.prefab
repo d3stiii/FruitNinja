@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 4479278106896652990}
   - component: {fileID: 872994221416682581}
   - component: {fileID: 7783182753059873085}
+  - component: {fileID: 7066318022345093397}
   m_Layer: 0
-  m_Name: Blade
+  m_Name: RedBlade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,3 +236,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sliceForce: 5
+--- !u!114 &7066318022345093397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8107992085378615864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3aa986ba4b43e49583a346e167d3e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: aba4a3af-b3f5-41a3-8b21-28b47e46d3cc

@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace CodeBase.Editor
 {
-    [CanEditMultipleObjects]
     [CustomEditor(typeof(BladeShopItemsData))]
     public class BladeShopItemsDataEditor : UnityEditor.Editor
     {

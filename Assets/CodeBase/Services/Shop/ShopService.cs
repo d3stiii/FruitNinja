@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using CodeBase.Services.AssetManagement;
+using CodeBase.Services.Data;
+using CodeBase.Services.SaveLoad;
 using UnityEngine;
 
 namespace CodeBase.Services.Shop
@@ -8,31 +10,46 @@ namespace CodeBase.Services.Shop
     public interface IShopService
     {
         event Action Purchased;
-        List<BladeShopItemDescription> GetItems();
-        void Purchase(string id);
+        IEnumerable<BladeShopItemDescription> GetAvailableItems();
+        void Purchase(BladeShopItemDescription item);
     }
 
     public class ShopService : IShopService
     {
         private readonly IStaticDataProvider _staticDataProvider;
+        private readonly IPersistentDataService _persistentDataService;
+        private readonly ISaveLoadService _saveLoadService;
 
-        public ShopService(IStaticDataProvider staticDataProvider)
+        public ShopService(IStaticDataProvider staticDataProvider, IPersistentDataService persistentDataService,
+            ISaveLoadService saveLoadService)
         {
             _staticDataProvider = staticDataProvider;
+            _persistentDataService = persistentDataService;
+            _saveLoadService = saveLoadService;
         }
 
         public event Action Purchased;
 
-        public List<BladeShopItemDescription> GetItems()
+        public IEnumerable<BladeShopItemDescription> GetAvailableItems()
         {
-            //TODO: Remove purchased items from list
+            var purchasedItems = _persistentDataService.PersistentData.PurchaseData.BoughtItems;
 
-            return _staticDataProvider.GetShopItemsData().ShopItems;
+            foreach (var item in _staticDataProvider.GetShopItemsData().ShopItems)
+            {
+                var boughtItem = purchasedItems.Find(x => x.ShopItemId == item.Id);
+
+                if (boughtItem != null)
+                    continue;
+
+                yield return item;
+            }
         }
 
-        public void Purchase(string id)
+        public void Purchase(BladeShopItemDescription item)
         {
-            Debug.Log($"Purchased item with id: {id}");
+            Debug.Log($"Purchased item with id: {item.Id}");
+            _persistentDataService.PersistentData.PurchaseData.AddPurchase(item);
+            _saveLoadService.Save();
             Purchased?.Invoke();
         }
     }

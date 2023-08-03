@@ -1,4 +1,5 @@
 ﻿using System;
+using CodeBase.Logic;
 using UnityEngine;
 
 namespace CodeBase.Services.Shop
@@ -10,6 +11,6 @@ namespace CodeBase.Services.Shop
         public int Price;
         public string Name;
         public Sprite Icon;
-        public Blade.Blade Prefab;
+        public UniqueId SkinId;
     }
 }

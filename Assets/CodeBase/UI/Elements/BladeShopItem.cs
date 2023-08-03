@@ -29,6 +29,6 @@ namespace CodeBase.UI.Elements
         }
 
         private void Purchase() => 
-            _shopService.Purchase(_itemDescription.Id);
+            _shopService.Purchase(_itemDescription);
     }
 }

@@ -34,7 +34,7 @@ namespace CodeBase.UI.Elements
 
         private void AddItems()
         {
-            foreach (var item in _shopService.GetItems())
+            foreach (var item in _shopService.GetAvailableItems())
             {
                 var itemObject = Instantiate(_itemPrefab, transform);
                 itemObject.Construct(item, _shopService);
