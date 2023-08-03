@@ -1,10 +1,12 @@
-﻿using CodeBase.Services.AssetManagement;
+﻿using System;
+using CodeBase.Services.AssetManagement;
 using UnityEngine;
 
 namespace CodeBase.Services.Shop
 {
     public interface IShopService
     {
+        event Action Purchased;
         BladeShopItemDescription[] GetItems();
         void Purchase(string id);
     }
@@ -17,7 +19,9 @@ namespace CodeBase.Services.Shop
         {
             _staticDataProvider = staticDataProvider;
         }
-        
+
+        public event Action Purchased;
+
         public BladeShopItemDescription[] GetItems()
         {
             //TODO: Remove purchased items from list
@@ -28,6 +32,7 @@ namespace CodeBase.Services.Shop
         public void Purchase(string id)
         {
             Debug.Log($"Purchased item with id: {id}");
+            Purchased?.Invoke();
         }
     }
 }

@@ -31,7 +31,7 @@ namespace CodeBase.Editor
         private void Generate(UniqueId uniqueId)
         {
             uniqueId.Id = Guid.NewGuid().ToString();
-            if (Application.isEditor)
+            if (!Application.isPlaying)
             {
                 EditorUtility.SetDirty(uniqueId);
                 EditorSceneManager.MarkSceneDirty(uniqueId.gameObject.scene);

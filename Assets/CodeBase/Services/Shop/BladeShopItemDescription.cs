@@ -7,7 +7,7 @@ namespace CodeBase.Services.Shop
     public class BladeShopItemDescription
     {
         public string Id;
-        public int Cost;
+        public int Price;
         public string Name;
         public Sprite Icon;
         public Blade.Blade Prefab;

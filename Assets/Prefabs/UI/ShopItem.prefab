@@ -843,5 +843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e4661cb7fb4a38910342abef327ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: {fileID: 5033424712169493103}
   _purchaseButton: {fileID: 6273471389424020573}
+  _nameText: {fileID: 5902715594706173074}
+  _priceText: {fileID: 4040795578380911098}
+  _icon: {fileID: 2468689993747408631}
