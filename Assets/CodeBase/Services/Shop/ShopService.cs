@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CodeBase.Services.AssetManagement;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace CodeBase.Services.Shop
     public interface IShopService
     {
         event Action Purchased;
-        BladeShopItemDescription[] GetItems();
+        List<BladeShopItemDescription> GetItems();
         void Purchase(string id);
     }
 
@@ -22,7 +23,7 @@ namespace CodeBase.Services.Shop
 
         public event Action Purchased;
 
-        public BladeShopItemDescription[] GetItems()
+        public List<BladeShopItemDescription> GetItems()
         {
             //TODO: Remove purchased items from list
 

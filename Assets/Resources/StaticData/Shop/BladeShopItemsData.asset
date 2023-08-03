@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: BladeShopItemsData
   m_EditorClassIdentifier: 
   _shopItems:
-  - Id: 1
+  - Id: 23a38e62-f5e6-489f-ba77-20c67ecc9137
     Price: 1000
     Name: Red blade
     Icon: {fileID: 21300000, guid: 5cae3f7d92a496048ad31ffadcfa3247, type: 3}
+    Prefab: {fileID: 1866442191444834722, guid: 7bcdd7ffdc307ab4e9246cdfdb2e2375, type: 3}
+  - Id: 2b9d850c-10b5-4e11-8055-59e1b13bca89
+    Price: 500
+    Name: Gold blade
+    Icon: {fileID: 21300000, guid: e55afe8478d2af0419d2f25f3dd546be, type: 3}
     Prefab: {fileID: 1866442191444834722, guid: 7bcdd7ffdc307ab4e9246cdfdb2e2375, type: 3}
