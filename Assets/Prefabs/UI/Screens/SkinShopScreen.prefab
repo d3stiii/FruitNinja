@@ -340,6 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _coinsText: {fileID: 5273024012550785851}
   _backButton: {fileID: 5170265524348216427}
+  _itemsContainer: {fileID: 3810225392469239394}
 --- !u!1 &3417192701114340295
 GameObject:
   m_ObjectHideFlags: 0

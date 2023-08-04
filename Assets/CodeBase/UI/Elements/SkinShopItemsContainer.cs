@@ -2,7 +2,6 @@
 using CodeBase.Services.Shop;
 using CodeBase.Services.Shop.Skins;
 using UnityEngine;
-using Zenject;
 
 namespace CodeBase.UI.Elements
 {
@@ -12,11 +11,8 @@ namespace CodeBase.UI.Elements
         private readonly List<SkinShopItem> _items = new();
         private IShopService<SkinShopItemDescription> _shopService;
 
-        [Inject]
-        public void Construct(IShopService<SkinShopItemDescription> shopService)
-        {
+        public void Construct(IShopService<SkinShopItemDescription> shopService) =>
             _shopService = shopService;
-        }
 
         private void Awake()
         {
