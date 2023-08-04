@@ -2,7 +2,7 @@
 using CodeBase.Logic;
 using UnityEngine;
 
-namespace CodeBase.Services.Shop
+namespace CodeBase.Services.Shop.Skins
 {
     [Serializable]
     public class SkinShopItemDescription

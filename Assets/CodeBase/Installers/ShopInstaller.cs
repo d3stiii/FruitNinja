@@ -1,4 +1,5 @@
 ﻿using CodeBase.Services.Shop;
+using CodeBase.Services.Shop.Skins;
 using Zenject;
 
 namespace CodeBase.Installers

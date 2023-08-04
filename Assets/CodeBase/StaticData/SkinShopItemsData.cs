@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CodeBase.Services.Shop;
+using CodeBase.Services.Shop.Skins;
 using UnityEngine;
 
 namespace CodeBase.StaticData

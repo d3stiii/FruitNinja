@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeBase.Services.Shop;
 
 namespace CodeBase.Data.Persistent
 {
     [Serializable]
     public class PurchaseData
     {
-        public List<BoughtItem> BoughtItems = new();
+        public List<string> BoughtItemIds = new();
 
-        public void AddPurchase(SkinShopItemDescription itemDescription)
+        public void AddPurchase(string id)
         {
-            BoughtItems.Add(new BoughtItem
-            {
-                ShopItemId = itemDescription.Id,
-                SkinId = itemDescription.SkinId.Id
-            });
+            if (BoughtItemIds.Contains(id))
+                return;
+
+            BoughtItemIds.Add(id);
         }
     }
 }

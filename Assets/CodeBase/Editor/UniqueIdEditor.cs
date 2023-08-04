@@ -27,7 +27,18 @@ namespace CodeBase.Editor
                 }
             }
         }
-        
+
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            var uniqueId = (UniqueId)target;
+
+            if (GUILayout.Button("Regenerate id"))
+            {
+                Generate(uniqueId);
+            }
+        }
+
         private void Generate(UniqueId uniqueId)
         {
             uniqueId.Id = Guid.NewGuid().ToString();

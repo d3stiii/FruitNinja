@@ -8,12 +8,14 @@ namespace CodeBase.Data.Persistent
         public HighScoreData HighScoreData;
         public CreditsData CreditsData;
         public PurchaseData PurchaseData;
+        public SkinData SkinData;
 
-        public PersistentData()
+        public PersistentData(string defaultSkin)
         {
             HighScoreData = new HighScoreData();
             CreditsData = new CreditsData();
             PurchaseData = new PurchaseData();
+            SkinData = new SkinData(defaultSkin);
         }
     }
 }

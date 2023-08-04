@@ -11,6 +11,7 @@ namespace CodeBase.Services.AssetManagement
         FruitSpawnerSettings GetFruitSpawnerSettings();
         FruitData GetFruitData(FruitType fruitType);
         SkinShopItemsData GetShopItemsData();
+        SkinsData GetSkinsData();
     }
 
     public class StaticDataProvider : IStaticDataProvider, IInitializable
@@ -18,11 +19,13 @@ namespace CodeBase.Services.AssetManagement
         private const string FruitSpawnerSettingsPath = "StaticData/Fruits/FruitSpawnerSettings";
         private const string FruitsDataPath = "StaticData/Fruits";
         private const string SkinShopItemsDataPath = "StaticData/Shop/SkinShopItemsData";
+        private const string SkinsDataPath = "StaticData/Skins/SkinsData";
 
         private readonly IAssetLoader _assetLoader;
         private FruitSpawnerSettings _fruitSpawnerSettings;
         private Dictionary<FruitType, FruitData> _fruitsData;
         private SkinShopItemsData _shopItemsData;
+        private SkinsData _skinsData;
 
         public StaticDataProvider(IAssetLoader assetLoader) =>
             _assetLoader = assetLoader;
@@ -33,6 +36,7 @@ namespace CodeBase.Services.AssetManagement
             _fruitsData = _assetLoader.LoadAllAssets<FruitData>(FruitsDataPath)
                 .ToDictionary(fruit => fruit.Type, fruit => fruit);
             _shopItemsData = _assetLoader.LoadAsset<SkinShopItemsData>(SkinShopItemsDataPath);
+            _skinsData = _assetLoader.LoadAsset<SkinsData>(SkinsDataPath);
         }
 
         public FruitData GetFruitData(FruitType fruitType) =>
@@ -43,5 +47,8 @@ namespace CodeBase.Services.AssetManagement
 
         public SkinShopItemsData GetShopItemsData() =>
             _shopItemsData;
+
+        public SkinsData GetSkinsData() =>
+            _skinsData;
     }
 }

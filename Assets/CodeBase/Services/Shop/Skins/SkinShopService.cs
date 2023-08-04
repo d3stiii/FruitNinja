@@ -5,15 +5,8 @@ using CodeBase.Services.Data;
 using CodeBase.Services.SaveLoad;
 using UnityEngine;
 
-namespace CodeBase.Services.Shop
+namespace CodeBase.Services.Shop.Skins
 {
-    public interface IShopService<TItem>
-    {
-        event Action Purchased;
-        IEnumerable<TItem> GetAvailableItems();
-        void Purchase(TItem item);
-    }
-
     public class SkinShopService : IShopService<SkinShopItemDescription>
     {
         private readonly IStaticDataProvider _staticDataProvider;
@@ -32,11 +25,11 @@ namespace CodeBase.Services.Shop
 
         public IEnumerable<SkinShopItemDescription> GetAvailableItems()
         {
-            var purchasedItems = _persistentDataService.PersistentData.PurchaseData.BoughtItems;
+            var purchasedItems = _persistentDataService.PersistentData.PurchaseData.BoughtItemIds;
 
             foreach (var item in _staticDataProvider.GetShopItemsData().ShopItems)
             {
-                var boughtItem = purchasedItems.Find(x => x.ShopItemId == item.Id);
+                var boughtItem = purchasedItems.Find(x => x == item.Id);
 
                 if (boughtItem != null)
                     continue;
@@ -47,7 +40,8 @@ namespace CodeBase.Services.Shop
 
         public void Purchase(SkinShopItemDescription item)
         {
-            _persistentDataService.PersistentData.PurchaseData.AddPurchase(item);
+            _persistentDataService.PersistentData.PurchaseData.AddPurchase(item.Id);
+            _persistentDataService.PersistentData.SkinData.AddSkin(item.SkinId.Id);
             _saveLoadService.Save();
             Purchased?.Invoke();
             Debug.Log($"Purchased item with id: {item.Id}");
