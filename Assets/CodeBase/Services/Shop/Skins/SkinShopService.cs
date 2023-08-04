@@ -41,7 +41,7 @@ namespace CodeBase.Services.Shop.Skins
         public void Purchase(SkinShopItemDescription item)
         {
             _persistentDataService.PersistentData.PurchaseData.AddPurchase(item.Id);
-            _persistentDataService.PersistentData.SkinData.AddSkin(item.SkinId.Id);
+            _persistentDataService.PersistentData.SkinsData.AddSkin(item.SkinId.Id);
             _saveLoadService.Save();
             Purchased?.Invoke();
             Debug.Log($"Purchased item with id: {item.Id}");

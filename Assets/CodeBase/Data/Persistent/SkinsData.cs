@@ -4,12 +4,12 @@ using System.Collections.Generic;
 namespace CodeBase.Data.Persistent
 {
     [Serializable]
-    public class SkinData
+    public class SkinsData
     {
         public List<string> OwnedSkinIds = new();
         public string SelectedSkinId;
 
-        public SkinData(string defaultSkin)
+        public SkinsData(string defaultSkin)
         {
             AddSkin(defaultSkin);
             SelectedSkinId = defaultSkin;
