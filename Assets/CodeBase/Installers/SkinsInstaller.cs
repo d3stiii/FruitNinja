@@ -7,8 +7,15 @@ namespace CodeBase.Installers
     {
         public override void InstallBindings()
         {
+            BindBladeFactory();
             BindSkinsService();
         }
+
+        private void BindBladeFactory() =>
+            Container
+                .Bind<IBladeFactory>()
+                .To<BladeFactory>()
+                .AsSingle();
 
         private void BindSkinsService() =>
             Container

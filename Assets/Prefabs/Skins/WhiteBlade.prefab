@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4479278106896652990}
   - component: {fileID: 872994221416682581}
   - component: {fileID: 7783182753059873085}
-  - component: {fileID: 2236314141281182192}
   m_Layer: 0
   m_Name: WhiteBlade
   m_TagString: Untagged
@@ -236,16 +235,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sliceForce: 5
---- !u!114 &2236314141281182192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8107992085378615864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c3aa986ba4b43e49583a346e167d3e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Id: 9a16f54e-b54b-44d4-9cde-303a9352d1a4
