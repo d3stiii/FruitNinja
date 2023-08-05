@@ -10,6 +10,9 @@ namespace CodeBase.Data.Persistent
 
         public void ChangeScore(int value)
         {
+            if (value <= Value)
+                return;
+
             Value = value;
             Changed?.Invoke();
         }

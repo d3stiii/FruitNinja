@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6201f11694547e089d067c13f0eb5b3, type: 3}
-  m_Name: WhiteBlade
+  m_Name: BlueBlade
   m_EditorClassIdentifier: 
-  Id: b094be20-b93e-4978-a5a3-6b323709fd28
-  _name: White blade
-  _icon: {fileID: 21300000, guid: 6b0fbcb71131137409eebd6a80906eaf, type: 3}
-  _prefab: {fileID: 1866442191444834722, guid: b4df7e0ad71f8d4428947a379097454c, type: 3}
+  Id: a3c01c51-6761-4331-8b96-281895b696be
+  _name: Blue blade
+  _icon: {fileID: 21300000, guid: 29bc67f5db9e1c645bc44e520465ac5f, type: 3}
+  _prefab: {fileID: 1866442191444834722, guid: 0597aceb1da8fba4dad87f2ecfdd0cc4, type: 3}

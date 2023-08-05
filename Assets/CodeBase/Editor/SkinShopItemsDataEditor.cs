@@ -1,5 +1,4 @@
 ﻿using System;
-using CodeBase.Services.Shop;
 using CodeBase.Services.Shop.Skins;
 using CodeBase.StaticData;
 using UnityEditor;

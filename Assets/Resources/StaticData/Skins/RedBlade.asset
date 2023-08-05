@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6201f11694547e089d067c13f0eb5b3, type: 3}
   m_Name: RedBlade
   m_EditorClassIdentifier: 
-  _id: 
+  Id: 06b6e650-c164-4b68-850a-6e091965a79e
   _name: Red blade
-  _icon: {fileID: 21300000, guid: 5cae3f7d92a496048ad31ffadcfa3247, type: 3}
+  _icon: {fileID: 21300000, guid: da14cfc0639d3b84aa003d4aaab7892a, type: 3}
   _prefab: {fileID: 1866442191444834722, guid: 7bcdd7ffdc307ab4e9246cdfdb2e2375, type: 3}
