@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace CodeBase.StaticData
 {
-    [CreateAssetMenu(fileName = "SkinsData", menuName = "Skins/SkinsData", order = 0)]
+    [CreateAssetMenu(fileName = "SkinsData", menuName = "Skins/SkinsData")]
     public class SkinsData : ScriptableObject
     {
-        [SerializeField] private Blade.Blade _defaultSkin;
-        [SerializeField] private List<Blade.Blade> _skins;
+        [SerializeField] private SkinData _defaultSkin;
+        [SerializeField] private List<SkinData> _skins;
 
-        public Blade.Blade DefaultSkin => _defaultSkin;
-        public List<Blade.Blade> Skins => _skins;
+        public SkinData DefaultSkin => _defaultSkin;
+        public List<SkinData> Skins => _skins;
 
         private void OnValidate()
         {

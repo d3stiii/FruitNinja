@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5697791338394138020}
   - component: {fileID: 2432734054261367421}
   - component: {fileID: 7355332864353804691}
+  - component: {fileID: 1245135623862192152}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -77,6 +78,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1245135623862192152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188724392824003633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e6312db27d64af587bd2bfe20769f02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemPrefab: {fileID: -9215911812978917174, guid: 32d505613c1175d468913902779902d6, type: 3}
 --- !u!1 &1279515527816878987
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _coinsText: {fileID: 6493281287225267199}
   _backButton: {fileID: 5508449574158450093}
+  _itemsContainer: {fileID: 1245135623862192152}
 --- !u!1 &8182768402181207845
 GameObject:
   m_ObjectHideFlags: 0

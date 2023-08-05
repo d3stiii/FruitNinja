@@ -1,6 +1,5 @@
 ﻿using CodeBase.Data.Persistent;
 using CodeBase.Extensions;
-using CodeBase.Logic;
 using CodeBase.Services.AssetManagement;
 using CodeBase.Services.Data;
 using UnityEngine;
@@ -40,7 +39,7 @@ namespace CodeBase.Services.SaveLoad
         private PersistentData CreateNew()
         {
             var defaultSkin = _staticDataProvider.GetSkinsData().DefaultSkin;
-            var defaultSkinId = defaultSkin.GetComponent<UniqueId>().Id;
+            var defaultSkinId = defaultSkin.Id;
             return new PersistentData(defaultSkinId);
         }
     }

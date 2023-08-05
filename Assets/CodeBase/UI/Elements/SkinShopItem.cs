@@ -15,7 +15,8 @@ namespace CodeBase.UI.Elements
         private SkinShopItemDescription _itemDescription;
         private IShopService<SkinShopItemDescription> _shopService;
 
-        public void Construct(SkinShopItemDescription itemDescription, IShopService<SkinShopItemDescription> shopService)
+        public void Construct(SkinShopItemDescription itemDescription,
+            IShopService<SkinShopItemDescription> shopService)
         {
             _shopService = shopService;
             _itemDescription = itemDescription;
@@ -23,9 +24,9 @@ namespace CodeBase.UI.Elements
 
         public void Initialize()
         {
-            _nameText.text = _itemDescription.Name;
+            _nameText.text = _itemDescription.Skin.Name;
             _priceText.text = _itemDescription.Price.ToString();
-            _icon.sprite = _itemDescription.Icon;
+            _icon.sprite = _itemDescription.Skin.Icon;
             _purchaseButton.onClick.AddListener(Purchase);
         }
 

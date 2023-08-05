@@ -29,7 +29,7 @@ namespace CodeBase.Services.Shop.Skins
 
             foreach (var item in _staticDataProvider.GetShopItemsData().ShopItems)
             {
-                var boughtItem = purchasedItems.Find(x => x == item.Id);
+                var boughtItem = purchasedItems.Find(id => id == item.Id);
 
                 if (boughtItem != null)
                     continue;
@@ -41,7 +41,7 @@ namespace CodeBase.Services.Shop.Skins
         public void Purchase(SkinShopItemDescription item)
         {
             _persistentDataService.PersistentData.PurchaseData.AddPurchase(item.Id);
-            _persistentDataService.PersistentData.SkinsData.AddSkin(item.SkinId.Id);
+            _persistentDataService.PersistentData.SkinsData.AddSkin(item.Skin.Id);
             _saveLoadService.Save();
             Purchased?.Invoke();
             Debug.Log($"Purchased item with id: {item.Id}");

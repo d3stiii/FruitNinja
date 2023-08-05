@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba45e8ba6933483cb32e03147adad990, type: 3}
   m_Name: SkinsData
   m_EditorClassIdentifier: 
-  _defaultSkin: {fileID: 1866442191444834722, guid: b4df7e0ad71f8d4428947a379097454c, type: 3}
+  _defaultSkin: {fileID: 11400000, guid: f20957e809ba7b94b9f5d3aebbdceb00, type: 2}
   _skins:
-  - {fileID: 1866442191444834722, guid: b4df7e0ad71f8d4428947a379097454c, type: 3}
-  - {fileID: 1866442191444834722, guid: 7bcdd7ffdc307ab4e9246cdfdb2e2375, type: 3}
+  - {fileID: 11400000, guid: f20957e809ba7b94b9f5d3aebbdceb00, type: 2}
+  - {fileID: 11400000, guid: c6d2a41f003853d4eb1abae39aa57dc2, type: 2}

@@ -1,6 +1,5 @@
 ﻿using System;
-using CodeBase.Logic;
-using UnityEngine;
+using CodeBase.StaticData;
 
 namespace CodeBase.Services.Shop.Skins
 {
@@ -9,8 +8,6 @@ namespace CodeBase.Services.Shop.Skins
     {
         public string Id;
         public int Price;
-        public string Name;
-        public Sprite Icon;
-        public UniqueId SkinId;
+        public SkinData Skin;
     }
 }

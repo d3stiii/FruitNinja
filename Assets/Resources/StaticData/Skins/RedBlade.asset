@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d422db3d9d8d417481a35ebdc542bf92, type: 3}
-  m_Name: SkinShopItemsData
+  m_Script: {fileID: 11500000, guid: f6201f11694547e089d067c13f0eb5b3, type: 3}
+  m_Name: RedBlade
   m_EditorClassIdentifier: 
-  _shopItems:
-  - Id: 23a38e62-f5e6-489f-ba77-20c67ecc9137
-    Price: 1000
-    Skin: {fileID: 11400000, guid: c6d2a41f003853d4eb1abae39aa57dc2, type: 2}
+  _id: 
+  _name: Red blade
+  _icon: {fileID: 21300000, guid: 5cae3f7d92a496048ad31ffadcfa3247, type: 3}
+  _prefab: {fileID: 1866442191444834722, guid: 7bcdd7ffdc307ab4e9246cdfdb2e2375, type: 3}
