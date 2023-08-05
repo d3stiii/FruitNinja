@@ -19,5 +19,17 @@ namespace CodeBase.Data.Persistent
             Value += amount;
             Changed?.Invoke();
         }
+
+        public void SpendCredits(int amount)
+        {
+            if (amount < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(amount),
+                    "Credits amount should be more than zero!");
+            }
+
+            Value -= amount;
+            Changed?.Invoke();
+        }
     }
 }

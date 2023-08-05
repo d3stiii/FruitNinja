@@ -23,7 +23,8 @@ namespace CodeBase.UI.Screens
             _exitButton.onClick.AddListener(() => _stateMachine.EnterState<ExitGameState>());
             _skinShopButton.onClick.AddListener(() => _stateMachine.EnterState<SkinShopState>());
             _skinInventoryButton.onClick.AddListener(() => _stateMachine.EnterState<SkinInventoryState>());
-            _coinsText.text = _persistentDataService.PersistentData.CreditsData.Value.ToString();
+            _persistentDataService.PersistentData.CreditsData.Changed += RefreshCoinsText;
+            RefreshCoinsText();
         }
 
         [Inject]
@@ -32,5 +33,8 @@ namespace CodeBase.UI.Screens
             _persistentDataService = persistentDataService;
             _stateMachine = stateMachine;
         }
+
+        private void RefreshCoinsText() =>
+            _coinsText.text = _persistentDataService.PersistentData.CreditsData.Value.ToString();
     }
 }

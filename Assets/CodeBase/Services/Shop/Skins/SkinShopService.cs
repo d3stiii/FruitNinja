@@ -38,13 +38,17 @@ namespace CodeBase.Services.Shop.Skins
             }
         }
 
-        public void Purchase(SkinShopItemDescription item)
+        public bool Purchase(SkinShopItemDescription item)
         {
+            if (item.Price > _persistentDataService.PersistentData.CreditsData.Value) return false;
+
             _persistentDataService.PersistentData.PurchaseData.AddPurchase(item.Id);
             _persistentDataService.PersistentData.SkinsData.AddSkin(item.Skin.Id);
+            _persistentDataService.PersistentData.CreditsData.SpendCredits(item.Price);
             _saveLoadService.Save();
             Purchased?.Invoke();
             Debug.Log($"Purchased item with id: {item.Id}");
+            return true;
         }
     }
 }

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shopItems:
   - Id: 23a38e62-f5e6-489f-ba77-20c67ecc9137
-    Price: 1000
+    Price: 100
     Skin: {fileID: 11400000, guid: c6d2a41f003853d4eb1abae39aa57dc2, type: 2}

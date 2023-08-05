@@ -7,6 +7,6 @@ namespace CodeBase.Services.Shop
     {
         event Action Purchased;
         IEnumerable<TItem> GetAvailableItems();
-        void Purchase(TItem item);
+        bool Purchase(TItem item);
     }
 }

@@ -20,15 +20,20 @@ namespace CodeBase.UI.Screens
         protected override void Initialize()
         {
             _backButton.onClick.AddListener(() => _stateMachine.EnterState<MainMenuState>());
-            _coinsText.text = _persistentDataService.PersistentData.CreditsData.Value.ToString();
+            _persistentDataService.PersistentData.CreditsData.Changed += RefreshCoinsText;
+            RefreshCoinsText();
         }
 
         [Inject]
-        public void Construct(StateMachine stateMachine, IPersistentDataService persistentDataService, ISkinsService screenService)
+        public void Construct(StateMachine stateMachine, IPersistentDataService persistentDataService,
+            ISkinsService screenService)
         {
             _persistentDataService = persistentDataService;
             _stateMachine = stateMachine;
             _itemsContainer.Construct(screenService);
         }
+
+        private void RefreshCoinsText() =>
+            _coinsText.text = _persistentDataService.PersistentData.CreditsData.Value.ToString();
     }
 }

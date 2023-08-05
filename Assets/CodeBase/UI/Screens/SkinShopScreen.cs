@@ -21,7 +21,8 @@ namespace CodeBase.UI.Screens
         protected override void Initialize()
         {
             _backButton.onClick.AddListener(() => _stateMachine.EnterState<MainMenuState>());
-            _coinsText.text = _persistentDataService.PersistentData.CreditsData.Value.ToString();
+            _persistentDataService.PersistentData.CreditsData.Changed += RefreshCoinsText;
+            RefreshCoinsText();
         }
 
         [Inject]
@@ -32,5 +33,8 @@ namespace CodeBase.UI.Screens
             _persistentDataService = persistentDataService;
             _itemsContainer.Construct(shopService);
         }
+
+        private void RefreshCoinsText() =>
+            _coinsText.text = _persistentDataService.PersistentData.CreditsData.Value.ToString();
     }
 }
