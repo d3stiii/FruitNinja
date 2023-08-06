@@ -1,4 +1,5 @@
 ﻿using System;
+using CodeBase.AssetManagement;
 using CodeBase.Fruits;
 using CodeBase.Services.AssetManagement;
 using CodeBase.Utilities;
@@ -17,7 +18,6 @@ namespace CodeBase.Services.Fruits
 
     public class FruitFactory : IFruitFactory
     {
-        private const string FruitSpawnerRootPath = "Prefabs/FruitSpawnerRoot";
         private readonly IInstantiator _instantiator;
         private readonly IStaticDataProvider _staticDataProvider;
         private readonly IAssetLoader _assetLoader;
@@ -39,7 +39,8 @@ namespace CodeBase.Services.Fruits
         {
             if (_spawnerRoot == null)
             {
-                _spawnerRoot = Object.Instantiate(_assetLoader.LoadAsset<SpawnerRoot>(FruitSpawnerRootPath));
+                _spawnerRoot = Object.Instantiate(_assetLoader.LoadAsset<SpawnerRoot>(AssetsPath.FruitSpawnerRootPath));
+                _spawnerRoot.gameObject.name = "FruitsSpawnerRoot";
             }
 
             return _spawnerRoot;

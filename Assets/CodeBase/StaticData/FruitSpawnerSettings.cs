@@ -2,8 +2,8 @@
 
 namespace CodeBase.StaticData
 {
-    [CreateAssetMenu(fileName = "FruitSpawnerSettings", menuName = "Fruits/FruitSpawnerSettings")]
-    public class FruitSpawnerSettings : ScriptableObject
+    [CreateAssetMenu(fileName = "ThrowableSpawnerSettings", menuName = "ThrowableObjects/ThrowableSpawnerSettings")]
+    public class ThrowableSpawnerSettings : ScriptableObject
     {
         [SerializeField] private float _maxSpawnDelay;
         [SerializeField] private float _minSpawnDelay;

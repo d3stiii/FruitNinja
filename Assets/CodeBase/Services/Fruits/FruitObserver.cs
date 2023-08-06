@@ -15,11 +15,9 @@ namespace CodeBase.Services.Fruits
     {
         private readonly ISessionDataService _sessionDataService;
         private readonly List<Fruit> _fruits = new();
-        private readonly IPersistentDataService _persistentDataService;
 
-        public FruitObserver(ISessionDataService sessionDataService, IPersistentDataService persistentDataService)
+        public FruitObserver(ISessionDataService sessionDataService)
         {
-            _persistentDataService = persistentDataService;
             _sessionDataService = sessionDataService;
         }
 

@@ -1,7 +1,7 @@
 ﻿using CodeBase.Logic;
 using UnityEngine;
 
-namespace CodeBase.Blade
+namespace CodeBase.Blades
 {
     public class BladeSlicer : MonoBehaviour
     {

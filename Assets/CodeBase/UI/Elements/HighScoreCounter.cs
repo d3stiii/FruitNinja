@@ -1,7 +1,6 @@
 ﻿using CodeBase.Services.Data;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using Zenject;
 
 namespace CodeBase.UI.Elements

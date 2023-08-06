@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CodeBase.Blade
+namespace CodeBase.Blades
 {
     public class BladeMovement : MonoBehaviour
     {

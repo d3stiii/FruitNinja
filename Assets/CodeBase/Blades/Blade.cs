@@ -3,7 +3,7 @@ using CodeBase.Services.Pause;
 using UnityEngine;
 using Zenject;
 
-namespace CodeBase.Blade
+namespace CodeBase.Blades
 {
     [RequireComponent(typeof(SphereCollider), typeof(TrailRenderer), typeof(BladeMovement))]
     public class Blade : MonoBehaviour, IPauseHandler

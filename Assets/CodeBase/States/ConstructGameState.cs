@@ -1,4 +1,5 @@
-﻿using CodeBase.Services.Data;
+﻿using CodeBase.Services.Bombs;
+using CodeBase.Services.Data;
 using CodeBase.Services.Fruits;
 using CodeBase.Services.Skins;
 using CodeBase.Services.UI;
@@ -12,16 +13,19 @@ namespace CodeBase.States
         private readonly IFruitObserver _fruitObserver;
         private readonly ISessionDataService _sessionDataService;
         private readonly IBladeFactory _bladeFactory;
+        private readonly IBombFactory _bombFactory;
         private readonly StateMachine _stateMachine;
 
         public ConstructGameState(StateMachine stateMachine, IUIFactory uiFactory, IFruitFactory fruitFactory,
-            IFruitObserver fruitObserver, ISessionDataService sessionDataService, IBladeFactory bladeFactory)
+            IFruitObserver fruitObserver, ISessionDataService sessionDataService, IBladeFactory bladeFactory,
+            IBombFactory bombFactory)
         {
             _uiFactory = uiFactory;
             _fruitFactory = fruitFactory;
             _fruitObserver = fruitObserver;
             _sessionDataService = sessionDataService;
             _bladeFactory = bladeFactory;
+            _bombFactory = bombFactory;
             _stateMachine = stateMachine;
         }
 
@@ -29,20 +33,20 @@ namespace CodeBase.States
         {
             Cleanup();
             InitUI();
-
             _bladeFactory.CreateBlade();
+
             _stateMachine.EnterState<GameplayState>();
         }
 
-        private void InitUI() => 
+        private void InitUI() =>
             _uiFactory.GetOrCreateHud();
 
         private void Cleanup()
         {
-            _bladeFactory.Cleanup();
             _fruitFactory.Cleanup();
             _fruitObserver.Cleanup();
             _sessionDataService.Reset();
+            _bombFactory.Cleanup();
         }
 
         public void Exit() { }

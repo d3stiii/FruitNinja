@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CodeBase.Blades;
+using UnityEngine;
 
 namespace CodeBase.StaticData
 {
@@ -9,10 +10,10 @@ namespace CodeBase.StaticData
 
         [SerializeField] private string _name;
         [SerializeField] private Sprite _icon;
-        [SerializeField] private Blade.Blade _prefab;
+        [SerializeField] private Blade _prefab;
 
         public Sprite Icon => _icon;
         public string Name => _name;
-        public Blade.Blade Prefab => _prefab;
+        public Blade Prefab => _prefab;
     }
 }

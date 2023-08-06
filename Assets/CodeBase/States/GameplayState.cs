@@ -1,4 +1,5 @@
-﻿using CodeBase.Services.Fruits;
+﻿using CodeBase.Services.Bombs;
+using CodeBase.Services.Fruits;
 
 namespace CodeBase.States
 {
@@ -6,12 +7,15 @@ namespace CodeBase.States
     {
         private readonly StateMachine _stateMachine;
         private readonly IFruitSpawner _fruitSpawner;
+        private readonly IBombSpawner _bombSpawner;
         private readonly IAttemptsObserver _attemptsObserver;
 
-        public GameplayState(StateMachine stateMachine, IFruitSpawner fruitSpawner, IAttemptsObserver attemptsObserver)
+        public GameplayState(StateMachine stateMachine, IFruitSpawner fruitSpawner, IBombSpawner bombSpawner,
+            IAttemptsObserver attemptsObserver)
         {
             _stateMachine = stateMachine;
             _fruitSpawner = fruitSpawner;
+            _bombSpawner = bombSpawner;
             _attemptsObserver = attemptsObserver;
         }
 
@@ -19,6 +23,7 @@ namespace CodeBase.States
         {
             _attemptsObserver.SubscribeUpdates();
             _attemptsObserver.Lost += OnLost;
+            _bombSpawner.StartSpawning();
             _fruitSpawner.StartSpawning();
         }
 
@@ -26,6 +31,7 @@ namespace CodeBase.States
         {
             _attemptsObserver.Lost -= OnLost;
             _attemptsObserver.Cleanup();
+            _bombSpawner.StopSpawning();
             _fruitSpawner.StopSpawning();
         }
 

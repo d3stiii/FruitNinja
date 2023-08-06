@@ -1,19 +1,18 @@
-﻿using UnityEngine;
+﻿using CodeBase.Blades;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace CodeBase.Services.Skins
 {
     public interface IBladeFactory
     {
-        Blade.Blade CreateBlade();
-        void Cleanup();
+        Blade CreateBlade();
     }
 
     public class BladeFactory : IBladeFactory
     {
         private readonly IInstantiator _instantiator;
         private readonly ISkinsService _skinsService;
-        private Blade.Blade _blade;
 
         public BladeFactory(IInstantiator instantiator, ISkinsService skinsService)
         {
@@ -21,19 +20,11 @@ namespace CodeBase.Services.Skins
             _skinsService = skinsService;
         }
 
-        public Blade.Blade CreateBlade()
+        public Blade CreateBlade()
         {
-            _blade = _instantiator.InstantiatePrefabForComponent<Blade.Blade>(_skinsService.GetEquippedSkin().Prefab);
-            return _blade;
-        }
-
-        public void Cleanup()
-        {
-            if (_blade == null)
-                return;
-            
-            Object.Destroy(_blade.gameObject);
-            _blade = null;
+            var blade = _instantiator.InstantiatePrefabForComponent<Blade>(_skinsService.GetEquippedSkin().Prefab);
+            SceneManager.MoveGameObjectToScene(blade.gameObject, SceneManager.GetActiveScene());
+            return blade;
         }
     }
 }
